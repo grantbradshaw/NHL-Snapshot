@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20160128030740) do
 
   create_table "collections", force: :cascade do |t|
     t.integer "user_id"
-    t.boolean "public"
+    t.boolean "shared",  default: false
     t.string  "title"
   end
 

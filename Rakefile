@@ -22,7 +22,6 @@ task "db:version" do
 end
 
 desc 'Populates the database immediately' 
-
 task "db:populate" do
   User.destroy_all
   Collection.destroy_all
@@ -35,4 +34,6 @@ task "db:populate" do
   Collection.create(user_id: @user1.id, title: 'Developer Collection')
   Collection.create(user_id: @user2.id, title: 'Test Collection')
   Collection.create(user_id: @user3.id, title: 'User Collection')
+
+  puts User.all.inspect
 end
