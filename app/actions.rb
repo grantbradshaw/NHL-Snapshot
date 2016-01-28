@@ -22,13 +22,13 @@ get '/' do
   erb :index
 end
 
-get '/login/:id' do # currently can login as developer at id 1, test at id 2, with associated collections
+get '/login/:id' do 
   session.clear
   session[:user] = params[:id]
   redirect '/'
 end
 
-get '/logout' do # need to allow access to webpage without being logged in
+get '/logout' do 
   session.clear
   redirect '/'
 end
@@ -71,7 +71,7 @@ get '/collections' do
   erb :'collections/index'
 end
 
-post '/delete' do 
+delete '/delete' do 
   SavedPhrase.delete(params[:saved_phrase_id])
   redirect "users/#{session[:user]}/collection"
 end

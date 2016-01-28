@@ -8,7 +8,8 @@
       </td>
       <td>
       <% if @is_users_collection %>
-        <form method="post" action='/delete'>
+        <form method="POST" action='/delete'>
+          <input type="hidden" name="_method" value="DELETE" />
           <div>
             <input type="hidden" value="<%= phrase.id %>" name="saved_phrase_id">
             <input type="submit" value="Delete Entry">
