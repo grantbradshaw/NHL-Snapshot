@@ -37,7 +37,8 @@ get '/users/:id/collection' do
   erb :'your_collection/index'
 end
 
-post '/delete' do
+post '/delete' do # need to limit delete only if user active on page is user who created collection
+  @active_user = session[:user] 
   SavedPhrase.delete(params[:saved_phrase_id])
   redirect "users/#{session[:user]}/collection"
 end
