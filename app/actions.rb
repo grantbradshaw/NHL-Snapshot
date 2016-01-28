@@ -1,6 +1,10 @@
 # Homepage (Root path)
 require_relative 'sentence'
 
+helpers do
+  def users_collection?
+  end
+end
 
 get '/' do
   @sentence = session[:current_phrase]
@@ -39,6 +43,7 @@ get '/users/:id/collection' do
 end
 
 post '/delete' do # need to limit delete only if user active on page is user who created collection
+  @is_users_collection = users_collection?
   SavedPhrase.delete(params[:saved_phrase_id])
   redirect "users/#{session[:user]}/collection"
 end

@@ -7,12 +7,14 @@
         <%= phrase.phrase %>
       </td>
       <td>
+      <% if @is_users_collection %>
         <form method="post" action='/delete'>
           <div>
             <input type="hidden" value="<%= phrase.id %>" name="saved_phrase_id">
             <input type="submit" value="Delete Entry">
           </div>
         </form>
+      <% end %>
       </td>
     </tr>
   <% end %>
