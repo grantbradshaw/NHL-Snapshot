@@ -10,3 +10,7 @@ post '/generate' do
   session[:current_phrase] = Sentence.sentence_creator
   redirect '/'
 end
+
+post '/save' do
+  redirect '/'
+end
