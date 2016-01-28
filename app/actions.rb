@@ -28,5 +28,9 @@ post '/save' do
 end
 
 post '/your_collection' do
+  redirect "users/#{session[:user]}/collection"
+end
+
+get '/users/:id/collection' do
   erb :'your_collection/index'
 end
