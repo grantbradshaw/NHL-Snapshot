@@ -10,13 +10,17 @@ module Sentence
     @generator["structure"].sample.each do |word|
       case word
       when "noun"
-        to_add =  @generator["words"]["noun"].sample + " "
+        sentence << @generator["words"]["noun"].sample + " "
+        next
       when "verb"
-        to_add =  @generator["words"]["verb"].sample + " "
+        sentence << @generator["words"]["verb"].sample + " "
+        next
       when "adjective"
-        to_add = @generator["words"]["adjective"].sample + " "
+        sentence << @generator["words"]["adjective"].sample + " "
+        next
       when "adverb"
-        to_add = @generator["words"]["adverb"].sample + " "
+        sentence << @generator["words"]["adverb"].sample + " "
+        next
       when "player"
         to_add = @generator["athletes"][random_team].sample + " "
       when "team"
