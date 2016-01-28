@@ -2,7 +2,7 @@
 require_relative 'sentence'
 
 helpers do
-  def users_collection?
+  def is_users_collection?
     puts params[:id]
     session[:user] == params[:id]
   end
@@ -43,7 +43,7 @@ post '/your_collection' do
 end
 
 get '/users/:id/collection' do
-  @is_users_collection = users_collection?
+  @is_users_collection = is_users_collection?
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
