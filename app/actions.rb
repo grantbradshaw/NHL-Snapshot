@@ -18,5 +18,9 @@ post '/generate' do
 end
 
 post '/save' do
+  @saved_phrase = SavedPhrase.new(
+    collection_id: Collection.find_by(user_id: session[:user]).id,
+    phrase: session[:current_phrase])
+  @saved_phrase.save
   redirect '/'
 end
