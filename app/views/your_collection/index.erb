@@ -1,1 +1,7 @@
 <h1>Your Collection</h1>
+
+<% @phrases.each do |phrase| %>
+  <p>
+    <%= phrase.phrase %>
+  </p>
+<% end %>

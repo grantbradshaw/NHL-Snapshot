@@ -32,5 +32,7 @@ post '/your_collection' do
 end
 
 get '/users/:id/collection' do
+  @collection = Collection.find_by(user_id: session[:user])
+  @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
 end
