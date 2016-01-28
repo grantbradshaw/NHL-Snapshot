@@ -20,6 +20,10 @@ get '/login/:id' do # currently can login as developer at id 1, test at id 2, wi
   redirect '/'
 end
 
+get '/logout' do # need to allow access to webpage without being logged in
+  redirect '/'
+end
+
 post '/generate' do
   session[:current_phrase] = Sentence.sentence_creator
   redirect '/'
