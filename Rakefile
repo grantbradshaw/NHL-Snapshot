@@ -20,3 +20,19 @@ desc 'Retrieves the current schema version number'
 task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
+
+desc 'Populates the database immediately' 
+
+task "db:populate" do
+  User.destroy_all
+  Collection.destroy_all
+  SavedPhrase.destroy_all
+
+  @user1 = User.create(name: 'developer')
+  @user2 = User.create(name: 'test')
+  @user3 = User.create(name: 'user')
+
+  Collection.create(user_id: @user1.id, title: 'Developer Collection')
+  Collection.create(user_id: @user2.id, title: 'Test Collection')
+  Collection.create(user_id: @user3.id, title: 'User Collection')
+end
