@@ -44,6 +44,7 @@ end
 
 get '/users/:id/collection' do
   @is_users_collection = is_users_collection?
+  @current_id = params[:id]
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
@@ -63,7 +64,8 @@ post '/delete' do
   redirect "users/#{session[:user]}/collection"
 end
 
-post '/delete_all' do
+post '/delete_all' do 
+  SavedPhrase.destroy_all(collection_id: @collection.id) if @current_id == session[:user_id] # only allows deletion if session user is user in url
   redirect "users/#{session[:user]}/collection"
 end
 
