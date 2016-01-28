@@ -8,12 +8,13 @@ helpers do
   end
 
   def current_user
+    @current_user = User.find(session[:user])
   end
 end
 
 get '/' do
+  @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count
   @sentence = session[:current_phrase]
-  @user = User.find(session[:user])
   erb :index
 end
 
