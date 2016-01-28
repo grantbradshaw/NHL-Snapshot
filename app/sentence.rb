@@ -11,21 +11,28 @@ def sentence_creator
   @generator["structure"].sample.each do |word|
     case word
     when "noun"
-      sentence << @generator["words"]["noun"].sample + " "
+      to_add =  @generator["words"]["noun"].sample + " "
     when "verb"
-      sentence << @generator["words"]["verb"].sample + " "
+      to_add =  @generator["words"]["verb"].sample + " "
     when "adjective"
-      sentence << @generator["words"]["adjective"].sample + " "
+      to_add = @generator["words"]["adjective"].sample + " "
     when "adverb"
-      sentence << @generator["words"]["adverb"].sample + " "
+      to_add = @generator["words"]["adverb"].sample + " "
     when "player"
-      sentence << @generator["athletes"][random_team].sample + " "
+      to_add = @generator["athletes"][random_team].sample + " "
     when "team"
-      sentence << random_team + " "
+      to_add = random_team + " "
     when "cliche"
-      sentence << @generator["words"]["cliche"].sample + " "
+      to_add = @generator["words"]["cliche"].sample + " "
     else
       sentence << word + " "
+      next
+    end
+
+    if sentence.include? to_add
+      return sentence_creator
+    else
+      sentence << to_add
     end
   end
 
