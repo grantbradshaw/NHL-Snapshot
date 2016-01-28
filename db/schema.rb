@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160128030740) do
   create_table "collections", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "shared",  default: false
-    t.string  "title"
+    t.string  "title",   default: "My Collection"
   end
 
   create_table "saved_phrases", force: :cascade do |t|

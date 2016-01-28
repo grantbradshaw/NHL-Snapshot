@@ -3,7 +3,7 @@ class AddCollections < ActiveRecord::Migration
     create_table :collections do |t|
       t.references(:user)
       t.boolean :shared, default: false
-      t.string :title      
+      t.string :title, default: 'My Collection'      
     end
   end
 end
