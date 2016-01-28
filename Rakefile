@@ -30,10 +30,12 @@ task "db:populate" do
   @user1 = User.create(name: 'developer')
   @user2 = User.create(name: 'test')
   @user3 = User.create(name: 'user')
+  @user4 = User.create(name: 'another')
 
   Collection.create(user_id: @user1.id, title: 'Developer Collection')
   Collection.create(user_id: @user2.id, title: 'Test Collection')
   Collection.create(user_id: @user3.id, title: 'User Collection')
+  Collection.create(user_id: @user4.id)
 
   puts User.all.inspect
 end

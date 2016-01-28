@@ -33,7 +33,7 @@ get '/logout' do
   redirect '/'
 end
 
-post '/generate' do
+post '/generate' do 
   session[:current_phrase] = Sentence.sentence_creator
   redirect '/'
 end
@@ -51,20 +51,20 @@ post '/save' do
   redirect '/'
 end
 
-post '/your_collection' do
+get '/your_collection' do
   redirect "users/#{session[:user]}/collection"
 end
 
 get '/users/:id/collection' do
-  @is_users_collection = is_users_collection?
+  # @is_users_collection = is_users_collection?
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
 end
 
-post '/collections' do
-  redirect '/collections'
-end
+# post '/collections' do
+#   redirect '/collections'
+# end
 
 get '/collections' do
   @user = session[:user]
@@ -87,3 +87,17 @@ post '/make_public' do
   @collection.save!
   redirect "users/#{session[:user]}/collection"
 end
+
+# get 'users/:id/collection/edit' do 
+#   @collection = Collection.find_by(user_id: current_user.id) 
+#   erb :'/your_collection/edit'
+# end
+
+# put 'users/:id/collection' do 
+#   @collection = Collection.find_by(user_id: current_user.id)
+#   if @collection.update_attributes(title: params[:title])
+#     redirect "/users/#{session[:user]}/collection"
+#   else
+#     @collection = current_user.collection #not sure about this
+#   end
+# end
