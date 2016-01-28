@@ -24,7 +24,11 @@
 <% if @is_users_collection %>
   <form method="post" action='/make_public'>
     <div>
-      <input type="submit" value="Make Public">
+      <% if @collection.shared %>
+        <input type="submit" value="Make Private">
+      <% else %>
+        <input type="submit" value="Make Public">
+      <% end %>
     </div>
   </form>
 <% end %>

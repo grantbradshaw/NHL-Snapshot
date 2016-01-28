@@ -81,9 +81,9 @@ delete '/delete_all' do
   redirect "users/#{session[:user]}/collection"
 end
 
-post '/make_public' do # oof, public is a reserved word in ruby - we should not use that as a column name (or concatenate a ? to the end at least)
-  #@collection = Collection.find_by(user_id: params[:id])
-  #@collection.public = !@collection.public
-  #@collection.save!
+post '/make_public' do
+  @collection = Collection.find_by(user_id: current_user.id)
+  @collection.shared = !@collection.shared
+  @collection.save!
   redirect "users/#{session[:user]}/collection"
 end

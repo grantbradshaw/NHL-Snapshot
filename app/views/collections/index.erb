@@ -1,6 +1,6 @@
 <h1>All Collections</h1>
 
-<% Collection.where.not(user_id: @user).each do |collection| %>
+<% Collection.where(shared: true).each do |collection| %>
   <table style="width:50%">
     <% SavedPhrase.where(collection_id: collection.id).each do |phrase| %>
       <tr>
