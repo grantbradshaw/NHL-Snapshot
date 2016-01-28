@@ -27,3 +27,11 @@
     </div>
   </form>
 <% end %>
+
+<% if @is_users_collection %>
+  <form method="post" action='/delete_all'>
+    <div>
+      <input type="submit" value="Delete All">
+    </div>
+  </form>
+<% end %>
