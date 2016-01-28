@@ -13,6 +13,10 @@ helpers do
 end
 
 get '/' do
+  if session[:field_blank]
+    @field_blank = session[:field_blank]
+    session[:field_blank] = nil
+  end
   @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count
   @sentence = session[:current_phrase]
   erb :index
@@ -37,8 +41,12 @@ post '/save' do
   @saved_phrase = SavedPhrase.new(
     collection_id: Collection.find_by(user_id: session[:user]).id,
     phrase: session[:current_phrase])
-  @saved_phrase.save! # we should find a way to handle error from saving empty phrase
-  session[:current_phrase] = nil # we should find a better way to keep users from saving input twice
+  begin
+    @saved_phrase.save!
+    session[:current_phrase] = nil
+  rescue ActiveRecord::RecordInvalid
+    session[:field_blank] = true
+  end
   redirect '/'
 end
 

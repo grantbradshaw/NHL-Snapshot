@@ -28,6 +28,12 @@
   </div>
 </form>
 
+<% if @field_blank %>
+  <p>
+    You can't save when the field is blank! Shame on you :(
+  </p>
+<% end %>
+
 <form method="post" action='/your_collection'>
   <div>
     <input type="submit" value="Your collection">
