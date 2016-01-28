@@ -2,13 +2,9 @@
 
 <% if current_user %>
   <p>
-    Active User: <%= @current_user.name %>
+    Saved Phrases: <%= @phrase_count %>
   </p>
 <% end %>
-
-<p>
-  Saved Phrases: <%= @phrase_count %>
-</p>
 
 <% if @sentence %>
   <p>
@@ -22,23 +18,26 @@
   </div>
 </form>
 
-<form method="post" action='/save'>
-  <div>
-    <input type="submit" value="Save this phrase">
-  </div>
-</form>
+<% if current_user %>
+  <form method="post" action='/save'>
+    <div>
+      <input type="submit" value="Save this phrase">
+    </div>
+  </form>
 
-<% if @field_blank %>
-  <p>
-    You can't save when the field is blank! Shame on you :(
-  </p>
+  <% if @field_blank %>
+    <p>
+      You can't save when the field is blank! Shame on you :(
+    </p>
+  <% end %>
+
+  <form method="post" action='/your_collection'>
+    <div>
+      <input type="submit" value="Your collection">
+    </div>
+  </form>
+
 <% end %>
-
-<form method="post" action='/your_collection'>
-  <div>
-    <input type="submit" value="Your collection">
-  </div>
-</form>
 
 <form method="post" action='/collections'>
   <div>

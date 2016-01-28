@@ -8,7 +8,7 @@ helpers do
   end
 
   def current_user
-    @current_user = User.find(session[:user])
+    @current_user = session[:user] ? User.find(session[:user]) : nil
   end
 end
 
@@ -17,7 +17,7 @@ get '/' do
     @field_blank = session[:field_blank]
     session[:field_blank] = nil
   end
-  @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count
+  @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count if current_user
   @sentence = session[:current_phrase]
   erb :index
 end
@@ -29,6 +29,7 @@ get '/login/:id' do # currently can login as developer at id 1, test at id 2, wi
 end
 
 get '/logout' do # need to allow access to webpage without being logged in
+  session.clear
   redirect '/'
 end
 
@@ -39,7 +40,7 @@ end
 
 post '/save' do 
   @saved_phrase = SavedPhrase.new(
-    collection_id: Collection.find_by(user_id: session[:user]).id,
+    collection_id: Collection.find_by(user_id: current_user.id).id,
     phrase: session[:current_phrase])
   begin
     @saved_phrase.save!
