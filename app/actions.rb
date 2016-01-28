@@ -7,8 +7,8 @@ get '/' do
   erb :index
 end
 
-get '/login/:id' do
-  session[:user] = params[:id]
+get '/login/:id' do # currently can only login as developer at id 1
+  session[:user] = params[:id] 
   redirect '/'
 end
 
