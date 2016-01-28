@@ -31,6 +31,7 @@
 <% if @is_users_collection %>
   <form method="post" action='/delete_all'>
     <div>
+      <input type="hidden", value="<%= @collection.id %>" name="collection_id">
       <input type="submit" value="Delete All">
     </div>
   </form>
