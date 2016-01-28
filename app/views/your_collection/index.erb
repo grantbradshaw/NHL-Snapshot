@@ -1,7 +1,11 @@
 <h1>Your Collection</h1>
 
-<% @phrases.each do |phrase| %>
-  <p>
-    <%= phrase.phrase %>
-  </p>
-<% end %>
+<table style="width:50%">
+  <% @phrases.each do |phrase| %>
+    <tr>
+      <td>
+        <%= phrase.phrase %>
+      </td>
+    </tr>
+  <% end %>
+</table>
