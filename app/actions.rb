@@ -36,3 +36,8 @@ get '/users/:id/collection' do
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
 end
+
+post '/delete' do
+  SavedPhrase.delete(params[:saved_phrase_id])
+  redirect "users/#{session[:user]}/collection"
+end

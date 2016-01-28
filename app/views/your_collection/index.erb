@@ -6,6 +6,14 @@
       <td>
         <%= phrase.phrase %>
       </td>
+      <td>
+        <form method="post" action='/delete'>
+          <div>
+            <input type="hidden" value="<%= phrase.id %>" name="saved_phrase_id">
+            <input type="submit" value="Delete Entry">
+          </div>
+        </form>
+      </td>
     </tr>
   <% end %>
 </table>
