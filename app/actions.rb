@@ -3,6 +3,8 @@ require_relative 'sentence'
 
 helpers do
   def users_collection?
+    puts params[:id]
+    session[:user] == params[:id]
   end
 end
 
@@ -37,13 +39,13 @@ post '/your_collection' do
 end
 
 get '/users/:id/collection' do
+  @is_users_collection = users_collection?
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
 end
 
-post '/delete' do # need to limit delete only if user active on page is user who created collection
-  @is_users_collection = users_collection?
+post '/delete' do 
   SavedPhrase.delete(params[:saved_phrase_id])
   redirect "users/#{session[:user]}/collection"
 end
