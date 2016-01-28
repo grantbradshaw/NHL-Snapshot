@@ -19,3 +19,11 @@
     </tr>
   <% end %>
 </table>
+
+<% if @is_users_collection %>
+  <form method="post" action='/make_public'>
+    <div>
+      <input type="submit" value="Make Public">
+    </div>
+  </form>
+<% end %>
