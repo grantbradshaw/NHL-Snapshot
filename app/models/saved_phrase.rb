@@ -1,3 +1,3 @@
-class SavedPhrase << ActiveRecord::Base
+class SavedPhrase < ActiveRecord::Base
 
 end

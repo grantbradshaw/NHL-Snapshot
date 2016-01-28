@@ -1,5 +1,10 @@
 <h1>Home Page</h1>
 
+<% if @user %>
+  <p>
+    Active User: <%= @user.name %>
+  </p>
+<% end %>
 
 <% if @sentence %>
   <p>
