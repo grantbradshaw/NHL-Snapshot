@@ -1,1 +1,14 @@
 <h1>Home Page</h1>
+
+
+<% if @sentence %>
+  <p>
+    <%= @sentence %>
+  </p>
+<% end %>
+
+<form method="post" action='/generate'>
+  <div>
+    <input type="submit" value="GENERATE!!!!!!!!">
+  </div>
+</form>
