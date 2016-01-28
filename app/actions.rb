@@ -8,6 +8,7 @@ get '/' do
 end
 
 get '/login/:id' do # currently can login as developer at id 1, test at id 2, with associated collections
+  session.clear
   session[:user] = params[:id]
   redirect '/'
 end
