@@ -26,3 +26,7 @@ post '/save' do
   session[:current_phrase] = nil # we should find a better way to keep users from saving input twice
   redirect '/'
 end
+
+post '/your_collection' do
+  redirect '/'
+end
