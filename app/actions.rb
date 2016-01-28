@@ -76,8 +76,8 @@ delete '/delete' do
   redirect "users/#{session[:user]}/collection"
 end
 
-post '/delete_all' do 
-  #SavedPhrase.destroy_all(collection_id: params[:collection_id]) if Collection.find(params[:collection_id]).user_id == session[:user_id] # only allows deletion if session user is user in url
+delete '/delete_all' do 
+  Collection.find_by(user_id: current_user.id).saved_phrases.destroy_all
   redirect "users/#{session[:user]}/collection"
 end
 
