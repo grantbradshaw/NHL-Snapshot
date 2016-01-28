@@ -7,7 +7,7 @@ get '/' do
   erb :index
 end
 
-get '/login/:id' do # currently can only login as developer at id 1, with an associated collection
+get '/login/:id' do # currently can login as developer at id 1, test at id 2, with associated collections
   session[:user] = params[:id]
   redirect '/'
 end
