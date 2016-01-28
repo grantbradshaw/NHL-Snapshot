@@ -50,6 +50,7 @@ post '/collections' do
 end
 
 get '/collections' do
+  @user = session[:user]
   erb :'collections/index'
 end
 
