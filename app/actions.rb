@@ -45,6 +45,14 @@ get '/users/:id/collection' do
   erb :'your_collection/index'
 end
 
+post '/collections' do
+  redirect '/collections'
+end
+
+get '/collections' do
+  erb :'collections/index'
+end
+
 post '/delete' do 
   SavedPhrase.delete(params[:saved_phrase_id])
   redirect "users/#{session[:user]}/collection"
