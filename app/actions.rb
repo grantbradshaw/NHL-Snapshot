@@ -28,5 +28,5 @@ post '/save' do
 end
 
 post '/your_collection' do
-  redirect '/'
+  erb :'your_collection/index'
 end
