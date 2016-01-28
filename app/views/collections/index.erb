@@ -5,7 +5,7 @@
     <% SavedPhrase.where(collection_id: collection.id).each do |phrase| %>
       <tr>
         <td>
-          <%= phrase.phrase %>
+          <a href=""><%= phrase.phrase %></a>
         </td>
       </tr>
     <% end %>

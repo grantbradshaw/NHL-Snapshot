@@ -88,16 +88,16 @@ post '/make_public' do
   redirect "users/#{session[:user]}/collection"
 end
 
-# get 'users/:id/collection/edit' do 
-#   @collection = Collection.find_by(user_id: current_user.id) 
-#   erb :'/your_collection/edit'
-# end
+get '/users/:id/collection/edit' do 
+  @collection = Collection.find_by(user_id: current_user.id) 
+  erb :'/your_collection/edit'
+end
 
-# put 'users/:id/collection' do 
-#   @collection = Collection.find_by(user_id: current_user.id)
-#   if @collection.update_attributes(title: params[:title])
-#     redirect "/users/#{session[:user]}/collection"
-#   else
-#     @collection = current_user.collection #not sure about this
-#   end
-# end
+put '/users/:id/collection' do 
+  @collection = Collection.find_by(user_id: current_user.id)
+  if @collection.update_attributes(title: params[:title])
+    redirect "/users/#{session[:user]}/collection"
+  else
+    erb :'/your_collection/edit'
+  end
+end
