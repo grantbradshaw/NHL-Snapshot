@@ -6,6 +6,9 @@ helpers do
     puts params[:id]
     session[:user] == params[:id]
   end
+
+  def current_user
+  end
 end
 
 get '/' do
