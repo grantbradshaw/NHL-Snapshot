@@ -18,10 +18,11 @@ post '/generate' do
   redirect '/'
 end
 
-post '/save' do
+post '/save' do 
   @saved_phrase = SavedPhrase.new(
     collection_id: Collection.find_by(user_id: session[:user]).id,
     phrase: session[:current_phrase])
   @saved_phrase.save!
+  session[:current_phrase] = nil # we should find a better way to keep users from saving input twice
   redirect '/'
 end
