@@ -1,37 +1,31 @@
-<% if current_user %>
-  <p>
-    Saved Phrases: <%= @phrase_count %>
-  </p>
-<% end %>
 
-<% if @sentence %>
-  <h1>
-    <%= @sentence %>
-  </h1>
-<% end %>
+<div class="jumbotron text-center"> 
+  <% if @sentence %>
+    <h1>
+      <%= @sentence %>
+    </h1>
+  <% end %>
 
-<form method="post" action='/saved_phrase'>
-  <div>
-    <input class="generate btn btn-info" type="submit" value="GENERATE!!!!!!!!">
-  </div>
-</form>
-
-<% if current_user %>
-  <form method="post" action='/saved_phrases'>
+  <form method="post" action='/saved_phrase'>
     <div>
-      <input class="btn btn-info" type="submit" value="Save this phrase">
+      <input class="generate btn btn-info" type="submit" value="GENERATE!!!!!!!!">
     </div>
   </form>
+</div>
+<% if current_user %>
+  <div class="container">
+    <form method="post" action='/saved_phrases'>
+      <input class="save-phrase btn btn-info pull-right" type="submit" value="Save this phrase">
+    </form>
+    <p>
+      Saved Phrases: <%= @phrase_count %>
+    </p>
+  </div>
 
   <% if @field_blank %>
-    <p>
+    <p class="pull-right">
       You can't save when the field is blank! Shame on you :(
     </p>
   <% end %>
 
-  <a href="/collection"><button type="submit" class="btn btn-info">Your Collection</button></a>
-
 <% end %>
-
-<a href="/collections"><button type="submit" class="btn btn-info">All Collections</button></a>
-

@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<title></title>
+    <title></title>
 
-    <!-- Bootstrap core CSS -->
-<link href="/stylesheets/bootstrap.css" rel="stylesheet">
-<style>
-body {
-  min-height: 2000px;
-  padding-top: 70px;
-}
+  <!--
+      normalize.css removes cross-browser differences in defaults, e.g.,
+      differences in how form elements appear between Firefox and IE
+      See: http://necolas.github.com/normalize.css/
+    -->
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <!--
+      application.css is where you put your styles
+    -->
+        <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/application.css">
+    <style>
+    body {
+      padding-top: 70px;
+    }
 
-</style>
+    </style>
   </head>
 
    <body>
@@ -40,34 +49,8 @@ body {
     </div>
 
     <div class="container">
-
-<head>
-  <!--
-    normalize.css removes cross-browser differences in defaults, e.g.,
-    differences in how form elements appear between Firefox and IE
-    See: http://necolas.github.com/normalize.css/
-  -->
-  <link rel="stylesheet" href="/stylesheets/normalize.css">
-  <!--
-    application.css is where you put your styles
-  -->
-  <link rel="stylesheet" href="/stylesheets/application.css">
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/javascript/application.js"></script>
-
-  <title></title>
-</head>
-<body>
-  <% if current_user %>
-  <p>
-    Active User: <%= @current_user.name %>
-  </p>
-<% end %>
-  <%= yield %>
-</body>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="/javascript/application.js"></script>
+    <%= yield %>
   </body>
 </html>
