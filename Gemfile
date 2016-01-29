@@ -12,6 +12,9 @@ gem 'puma'
 gem 'tux'
 
 gem 'json'
+gem 'twitter'
+gem 'twitter-text'
+gem 'marky_markov'
 
 group :development, :test do
   gem 'pry'
