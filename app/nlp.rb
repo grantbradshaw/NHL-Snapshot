@@ -1,6 +1,6 @@
 module SportsNLP
 
-  @markov = markov = MarkyMarkov::TemporaryDictionary.new
+  @markov = MarkyMarkov::TemporaryDictionary.new
 
   def self.train(string)
     SportsTwitter.search(string, 400).each do |tweet|
@@ -10,8 +10,9 @@ module SportsNLP
 
   def self.markov_speak(string)
     train(string)
-    puts @markov.generate_n_sentences 1
+    word = @markov.generate_n_sentences 1
     @markov.clear!
+    word
   end
 
   def self.remove_url(string)

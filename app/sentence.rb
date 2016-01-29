@@ -42,6 +42,10 @@ module Sentence
     canadian_speak(sentence.strip())
   end
 
+  def self.random_player
+    @generator["athletes"][random_team].sample
+  end
+
   private
     def self.random_team
       @generator["athletes"].keys.sample

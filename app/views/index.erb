@@ -27,6 +27,36 @@
         You can't save when the field is blank! Shame on you :(
       </p>
     <% end %>
-
+  </div>
   <% end %>
-</div>
+
+<table style=100%>
+  <tr>
+    <td>Top Three Teams</td>
+    <td>Bottom Three Teams</td>
+    <td>Scoring Leaders</td>
+    <td>Top Goalies</td>
+    <td>Popular Links</td>
+  </tr>
+  <tr>
+    <td><%= @top_three_teams[0][:name] %></td>
+    <td><%= @bottom_three_teams[0][:name] %></td>
+    <td><%= @top_three_pts[0][:name] %></td>
+    <td><%= @top_three_svp[0][:name] %></td>
+    <td><%= Twitter::Autolink.auto_link(@top_three_links[0][0]) %></td>
+  </tr>
+  <tr>
+    <td><%= @top_three_teams[1][:name] %></td>
+    <td><%= @bottom_three_teams[1][:name] %></td>
+    <td><%= @top_three_pts[1][:name] %></td>
+    <td><%= @top_three_svp[1][:name] %></td>
+    <td><%= Twitter::Autolink.auto_link(@top_three_links[1][0]) %></td>
+  </tr>
+  <tr>
+    <td><%= @top_three_teams[2][:name] %></td>
+    <td><%= @bottom_three_teams[2][:name] %></td>
+    <td><%= @top_three_pts[2][:name] %></td>
+    <td><%= @top_three_svp[2][:name] %></td>
+    <td><%= Twitter::Autolink.auto_link(@top_three_links[2][0]) %></td>
+  </tr>
+</table>
