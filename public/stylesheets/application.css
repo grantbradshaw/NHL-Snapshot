@@ -1,8 +1,30 @@
 .generate {
-  height: 10em;
-  width: 20em;
+  margin-top: 0.4em;
+  height: 2.5em;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 3em;
 }
 
-.save-phrase{
-  padding-right: 10px; 
+.generate .btn-sm {
+  margin-top: 0.1em;
+  height: 1em;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  font-size: 1em;
+}
+
+
+.save-phrase {
+  margin-right: 16px; 
+}
+
+/*table {
+  margin: auto;
+}*/
+.delete-all {
+  width: 25%;
+}
+.public-private {
+  width: 25%
 }
