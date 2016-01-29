@@ -4,7 +4,7 @@
 <title></title>
 
     <!-- Bootstrap core CSS -->
-<link href="stylesheets/bootstrap.css" rel="stylesheet">
+<link href="/stylesheets/bootstrap.css" rel="stylesheet">
 <style>
 body {
   min-height: 2000px;
@@ -30,7 +30,10 @@ body {
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav pull-right">
             <li><a href="/collections">Public Collections</a></li>
-            <li><a href="/your_collection"><%= current_user.name %></a></li>
+            <% if current_user %>
+              <li><a href="/collection"><%= current_user.name %></a></li>
+              <li><a href="/logout">Logout</a></li>
+            <% end %>
           </ul>
         </div>
       </div>
