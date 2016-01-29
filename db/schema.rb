@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129000249) do
+ActiveRecord::Schema.define(version: 20160129031749) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20160129000249) do
   create_table "saved_phrases", force: :cascade do |t|
     t.integer "collection_id"
     t.string  "phrase"
+  end
+
+  create_table "upvotes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "collection_id"
   end
 
   create_table "users", force: :cascade do |t|
