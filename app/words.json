@@ -33,12 +33,12 @@
   },
 "words": {
           "noun": ["net", "puck", "ref", "blueline", "boards", "Stanley Cup", "stick", "brouhaha", "scrum", "line brawl", 
-                   "enforcer", "top shelf", "5 Hole", "clapper", "pylon", "All Star Game", "flat ice ball", "crease", 
+                   "enforcer", "top shelf", "five hole", "clapper", "pylon", "All Star Game", "flat ice ball", "crease", 
                    "drop pass", "powerplay", "penalty kill"],
           "verb": ["hit", "kissed", "spun", "drove", "slapped", "smashed", "deked", "fought", "passed", "blocked", "chirped",
                   "poke-checked", "cross-checked", "hooked", "boarded", "spiked", "squibbed", "charged", "ladled", "shoveled",
                   "speared", "pucked", "spooned", "pummelled", "whiffed on", "hip-checked", "beat", "battled", "put a beatdown on",
-                  "barely grazed"],
+                  "barely grazed", "screened", "bit"],
           "adjective": ["beautiful", "horrifying", "glorious", "terrible", "intriguing", "sexy", "exquisite", "disastrous",
                         "conspicuous", "feckless", "reckless", "insolent", "obtuse", "puckish", "nefarious", "turbulent",
                         "overzealous", "magic", "intimate", "coy", "subtle", "dogmatic", "wicked", "pretty", "spectacular",
@@ -61,6 +61,7 @@
             ["player", "cliche"],
             ["player", "and", "player", "would play really well together"],
             ["The", "team", "adverb", "verb", "the", "team", "last night"],
+            ["Those", "team", "are really something else"],
             ["That", "player", "sure", "verb", "the", "noun"],
             ["I can't believe", "player", "verb", "player", "so", "adverb"]
 
