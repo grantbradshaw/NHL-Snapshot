@@ -1,7 +1,7 @@
 <h1>All Collections</h1>
 
 <table style="width:50%">
-<% Collection.where(shared: true).each do |collection| %>
+<% Collection.where(shared: true).order(created_at: :desc).each do |collection| %>
       <tr>
         <td>
           <a href="/users/<%= collection.user_id %>/collection"><%= collection.title %></a>

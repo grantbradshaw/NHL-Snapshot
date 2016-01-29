@@ -11,12 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128030740) do
+ActiveRecord::Schema.define(version: 20160129000249) do
 
   create_table "collections", force: :cascade do |t|
-    t.integer "user_id"
-    t.boolean "shared",  default: false
-    t.string  "title",   default: "My Collection"
+    t.integer  "user_id"
+    t.boolean  "shared",     default: false
+    t.string   "title",      default: "My Collection"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "saved_phrases", force: :cascade do |t|
