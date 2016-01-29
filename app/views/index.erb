@@ -12,14 +12,14 @@
   </p>
 <% end %>
 
-<form method="post" action='/generate'>
+<form method="post" action='/saved_phrase'>
   <div>
     <input type="submit" value="GENERATE!!!!!!!!">
   </div>
 </form>
 
 <% if current_user %>
-  <form method="post" action='/save'>
+  <form method="post" action='/saved_phrases'>
     <div>
       <input type="submit" value="Save this phrase">
     </div>
@@ -31,7 +31,7 @@
     </p>
   <% end %>
 
-  <a href="/your_collection"><button type="submit">Your Collection</button></a>
+  <a href="/collection"><button type="submit">Your Collection</button></a>
 
 <% end %>
 

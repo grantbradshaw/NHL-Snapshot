@@ -33,12 +33,12 @@ get '/logout' do
   redirect '/'
 end
 
-post '/generate' do 
+post '/saved_phrase' do 
   session[:current_phrase] = Sentence.sentence_creator
   redirect '/'
 end
 
-post '/save' do 
+post '/saved_phrases' do 
   @saved_phrase = SavedPhrase.new(
     collection_id: Collection.find_by(user_id: current_user.id).id,
     phrase: session[:current_phrase])
@@ -51,14 +51,14 @@ post '/save' do
   redirect '/'
 end
 
-get '/your_collection' do
+get '/collection' do
   redirect "users/#{session[:user]}/collection"
 end
 
 get '/users/:id/collection' do
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
-  erb :'your_collection/index'
+  erb :'collection/index'
 end
 
 get '/collections' do
@@ -66,26 +66,26 @@ get '/collections' do
   erb :'collections/index'
 end
 
-delete '/delete' do 
-  SavedPhrase.delete(params[:saved_phrase_id])
+delete '/saved_phrase/:id' do 
+  SavedPhrase.delete(params[:id])
   redirect "users/#{session[:user]}/collection"
 end
 
-delete '/delete_all' do 
+delete '/saved_phrases' do 
   Collection.find_by(user_id: current_user.id).saved_phrases.destroy_all
   redirect "users/#{session[:user]}/collection"
 end
 
-post '/make_public' do
+put '/users/:id/collection/edit_shared' do
   @collection = Collection.find_by(user_id: current_user.id)
   @collection.shared = !@collection.shared
   @collection.save!
   redirect "users/#{session[:user]}/collection"
 end
 
-get '/users/:id/collection/edit' do 
+get '/users/:id/collection/edit_title' do 
   @collection = Collection.find_by(user_id: current_user.id) 
-  erb :'/your_collection/edit'
+  erb :'/collection/edit'
 end
 
 put '/users/:id/collection' do 
@@ -93,6 +93,6 @@ put '/users/:id/collection' do
   if @collection.update_attributes(title: params[:title])
     redirect "/users/#{session[:user]}/collection"
   else
-    erb :'/your_collection/edit'
+    erb :'/collection/edit'
   end
 end
