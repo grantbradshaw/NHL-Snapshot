@@ -1,4 +1,6 @@
 require_relative 'sentence'
+require_relative 'nlp'
+require_relative 'sports_twitter'
 require_relative 'auth_actions'
 require_relative 'saved_phrase_actions'
 require_relative 'collection_actions'
