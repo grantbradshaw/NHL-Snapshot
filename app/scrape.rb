@@ -8,6 +8,9 @@ module WebScrape
   standings = open('http://app.cgy.nhl.yinzcam.com/V2/Stats/Standings')
   @standings = Nokogiri::XML(standings.read)
 
+  teams = File.read('app/teams.json')
+  @team_acronyms = JSON.parse(teams)
+
 
   def self.top_three_svp
     top_goalies = []
