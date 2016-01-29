@@ -5,8 +5,12 @@
       <tr>
         <td>
           <a href="/users/<%= collection.user_id %>/collection"><%= collection.title %></a> 
-          <% unless current_user.has_upvoted_collection?(collection) %>
-            <a href="/collection/<%= collection.id %>/upvote"> <button type="submit"><%= collection.upvotes.count %></button></a>
+          <% unless current_user && current_user.has_upvoted_collection?(collection) %>
+            <% if current_user %>
+              <a href="/collection/<%= collection.id %>/upvote"<button type="submit"><%= collection.upvotes.count %></button></a>
+            <% else %>
+              <button><%= collection.upvotes.count %>
+            <% end %>
           <% else %>
             <button type="submit"><%= collection.upvotes.count %></button>
           <% end %>
