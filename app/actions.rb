@@ -56,15 +56,10 @@ get '/your_collection' do
 end
 
 get '/users/:id/collection' do
-  # @is_users_collection = is_users_collection?
   @collection = Collection.find_by(user_id: params[:id])
   @phrases = SavedPhrase.where(collection_id: @collection.id)
   erb :'your_collection/index'
 end
-
-# post '/collections' do
-#   redirect '/collections'
-# end
 
 get '/collections' do
   @user = session[:user]

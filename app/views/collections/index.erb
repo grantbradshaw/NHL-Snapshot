@@ -1,17 +1,11 @@
 <h1>All Collections</h1>
 
+<table style="width:50%">
 <% Collection.where(shared: true).each do |collection| %>
-  <table style="width:50%">
-    <% SavedPhrase.where(collection_id: collection.id).each do |phrase| %>
       <tr>
         <td>
-          <a href=""><%= phrase.phrase %></a>
+          <a href="/users/<%= collection.user_id %>/collection"><%= collection.title %></a>
         </td>
       </tr>
     <% end %>
-  </table>
-
-  <p>
-    --------
-  </p>
-<% end %>
+</table>
