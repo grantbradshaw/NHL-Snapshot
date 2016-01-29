@@ -16,6 +16,7 @@ gem 'twitter'
 gem 'twitter-text'
 gem 'marky_markov'
 gem 'nokogiri'
+gem 'facets'
 
 group :development, :test do
   gem 'pry'

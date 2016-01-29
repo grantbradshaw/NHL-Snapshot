@@ -1,7 +1,3 @@
-require 'json'
-require 'open-uri'
-require 'nokogiri'
-
 module WebScrape
   points_leaders_file = open('http://nhlwc.cdnak.neulion.com/fs1/nhl/league/leagueleaders/iphone/points/leagueleaders.json')
   @points_leaders = JSON.load(points_leaders_file)
