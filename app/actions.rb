@@ -5,6 +5,7 @@ require_relative 'auth_actions'
 require_relative 'saved_phrase_actions'
 require_relative 'collection_actions'
 require_relative 'user_actions'
+require_relative 'scrape'
 
 helpers do
   def is_users_collection?
