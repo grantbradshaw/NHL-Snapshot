@@ -1,47 +1,46 @@
-<h1><%= @collection.title %></h1>
-<% if current_user && (@collection.user_id == current_user.id)  %>
-  <a href="/users/<%= current_user.id %>/collection/edit_title"><button class="btn btn-info" type="submit">Edit Title</button></a>
-<% end %>
-
-<table style="width:50%">
-  <% @phrases.each do |phrase| %>
-    <tr>
-      <td>
-        <%= phrase.phrase %>
-      </td>
-      <td>
-      <% if is_users_collection? %>
-        <form method="POST" action='/saved_phrase/<%= phrase.id %>'>
-          <input type="hidden" name="_method" value="DELETE" />
-          <div>
-            <input type="hidden" value="<%= phrase.id %>" name="saved_phrase_id">
-            <input class="btn btn-danger" type="submit" value="Delete Entry">
-          </div>
-        </form>
-      <% end %>
-      </td>
-    </tr>
+<div class="container-fluid col-lg-8 col-lg-offset-2 col-sm-12">
+  <h1><%= @collection.title %>
+  <% if current_user && (@collection.user_id == current_user.id)  %>
+    <a href="/users/<%= current_user.id %>/collection/edit_title"><button class="btn btn-info btn-xs" type="submit">Edit Title</button></a>
   <% end %>
-</table>
+  </h1>
 
-<% if is_users_collection? %>
-  <form method="post" action="/users/<%= current_user.id %>/collection/edit_shared">
-  <input type="hidden" name="_method" value="PUT">
-    <div>
+  <table class="table table-hover">
+    <% @phrases.each do |phrase| %>
+      <tr>
+        <td>
+          <%= phrase.phrase %>
+        </td>
+        <td>
+        <% if is_users_collection? %>
+          <form method="POST" action='/saved_phrase/<%= phrase.id %>'>
+            <input type="hidden" name="_method" value="DELETE" />
+            <div>
+              <input type="hidden" value="<%= phrase.id %>" name="saved_phrase_id">
+              <input class="btn btn-danger pull-right" type="submit" value="Delete Entry">
+            </div>
+          </form>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <% if is_users_collection? %>
+    <form method="post" action="/users/<%= current_user.id %>/collection/edit_shared" style="float:left; width:auto">
+    <input type="hidden" name="_method" value="PUT">
       <% if @collection.shared %>
         <input class="btn btn-info" type="submit" value="Make Private">
       <% else %>
         <input class="btn btn-info" type="submit" value="Make Public">
       <% end %>
-    </div>
-  </form>
-<% end %>
+    </form>
+  <% end %>
 
-<% if is_users_collection? %>
-  <form method="POST" action='/saved_phrases'>
-    <input type="hidden" name="_method" value="DELETE" />
-    <div>
-      <input class="btn btn-info" type="submit" value="Delete All">
-    </div>
-  </form>
-<% end %>
+  <% if is_users_collection? %>
+    <form method="POST" action='/saved_phrases' style="float:right; width:auto">
+      <input type="hidden" name="_method" value="DELETE" />
+        <input class="btn btn-default" type="submit" value="Delete All">
+    </form>
+  <% end %>
+</div>
