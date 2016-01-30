@@ -127,11 +127,52 @@ module WebScrape
       next_game = next_month_schedule['games'].detect { |game| game['status'] != 'FINAL'}
     end
 
-
     next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
     next_game_day = next_game['startTime'].split(' ')[0]
     next_game_hour = next_game['startTime'].split(' ')[1]
     "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+  end
+
+  def self.last_game(team)
+    this_month = Time.now.month
+    this_year = Time.now.year
+    this_month_s = month_string(this_month)
+    
+
+    if this_month == 1
+      last_month = 12
+      last_month_s = month_string(last_month)
+      last_year = this_year - 1
+    else
+      last_month = this_month - 1
+      last_month_s = month_string(last_month)
+      last_year = this_year
+    end
+    
+    team_acro = @team_acronyms[team]
+
+    this_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
+    this_month_schedule = JSON.load(this_month_file)
+
+    last_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{last_year.to_s}/#{last_month_s}/iphone/clubschedule.json")
+    last_month_schedule = JSON.load(last_month_file)
+
+    last_game = this_month_schedule['games'].reverse.detect { |game| game['status'] == 'FINAL'}
+    unless last_game
+      last_game = last_month_schedule['games'].reverse.detect { |game| game['status'] == 'FINAL'}
+    end
+
+    last_game_opponent = @team_acronyms.detect { |k,v| v == last_game['abb']}
+    last_game_outcome = last_game['score']
+    last_game_win_loss = last_game_outcome.split(' ')[1]
+    last_game_score = last_game_outcome.split(' ')[0]
+    last_game_day = last_game['startTime'].split(' ')[0]
+
+    if last_game_win_loss == 'W'
+      "Defeated the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+    else
+      "Lost to the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+    end
   end
 
   def self.month_string(month)

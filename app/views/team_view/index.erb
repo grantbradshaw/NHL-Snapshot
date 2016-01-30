@@ -1,6 +1,6 @@
-<h1>Team View</h1>
+<h1>Team Snapshot</h1>
 
-<form method="get" action="/team_view">
+<form method="get" action="/team_snapshot">
   <select name="team_choice">
     
     <% if @team %>
@@ -40,6 +40,10 @@
     <tr>
       <td>Next Game</td>
       <td><%= @next_game %></td>
+    </tr>
+    <tr>
+      <td>Last Game</td>
+      <td><%= @last_game %></td>
     </tr>
   </table>
 <% end %>
