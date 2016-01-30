@@ -33,3 +33,11 @@ get '/' do
   @top_three_links = SportsTwitter.popular("nhl", 10, 3)
   erb :index
 end
+
+post '/team_view' do
+  redirect '/team_view'
+end
+
+get '/team_view' do
+  erb :'team_view/index'
+end
