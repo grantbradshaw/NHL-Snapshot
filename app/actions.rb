@@ -44,6 +44,7 @@ get '/team_view' do
     @top_player = WebScrape.top_scoring_player(params[:team_choice])
     @top_goalie = WebScrape.top_goalie(params[:team_choice])
     @next_game = WebScrape.next_game(params[:team_choice])
+    @last_game = WebScrape.last_game(params[:team_choice])
     @team = params[:team_choice]
   end
   @teams = WebScrape.all_teams.sort
