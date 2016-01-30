@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main">
   <div class="jumbotron text-center"> 
     <% if @sentence %>
       <h1>
@@ -13,14 +13,14 @@
     </form>
   </div>
   <% if current_user %>
-    <div class="container">
       <form method="post" action='/saved_phrases'>
+        <div>
         <input class="save-phrase btn btn-info pull-right" type="submit" value="Save this phrase">
+        </div>
       </form>
       <p>
         <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
       </p>
-    </div>
 
     <% if @field_blank %>
       <p class="pull-right">
@@ -28,39 +28,37 @@
       </p>
     <% end %>
   <% end %>
-</div>
 
-<div class="container">
-<footer>
-  <table id="index-table" class="table table-hover" style="width: 100%">
-    <tr>
-      <th>Top Three Teams</th>
-      <th>Bottom Three Teams</th>
-      <th>Scoring Leaders</th>
-      <th>Top Goalies</th>
-      <th>Popular Links</th>
-    </tr>
-    <tr>
-      <td>1. <%= @top_three_teams[0][:name] %></td>
-      <td>30. <%= @bottom_three_teams[0][:name] %></td>
-      <td>1. <%= @top_three_pts[0][:name] %></td>
-      <td>1. <%= @top_three_svp[0][:name] %></td>
-      <td><%= Twitter::Autolink.auto_link(@top_three_links[0][0]) %></td>
-    </tr>
-    <tr>
-      <td>2. <%= @top_three_teams[1][:name] %></td>
-      <td>29. <%= @bottom_three_teams[1][:name] %></td>
-      <td>2. <%= @top_three_pts[1][:name] %></td>
-      <td>2. <%= @top_three_svp[1][:name] %></td>
-      <td><%= Twitter::Autolink.auto_link(@top_three_links[1][0]) %></td>
-    </tr>
-    <tr>
-      <td>3. <%= @top_three_teams[2][:name] %></td>
-      <td>28. <%= @bottom_three_teams[2][:name] %></td>
-      <td>3. <%= @top_three_pts[2][:name] %></td>
-      <td>3. <%= @top_three_svp[2][:name] %></td>
-      <td><%= Twitter::Autolink.auto_link(@top_three_links[2][0]) %></td>
-    </tr>
-  </table>
-</footer>
+  <footer>
+    <table class="table table-hover" style="width: 100%">
+      <tr>
+        <th>Top Three Teams</th>
+        <th>Bottom Three Teams</th>
+        <th>Scoring Leaders</th>
+        <th>Top Goalies</th>
+        <th>Popular Links</th>
+      </tr>
+      <tr>
+        <td>1. <%= @top_three_teams[0][:name] %></td>
+        <td>30. <%= @bottom_three_teams[0][:name] %></td>
+        <td>1. <%= @top_three_pts[0][:name] %></td>
+        <td>1. <%= @top_three_svp[0][:name] %></td>
+        <td><%= Twitter::Autolink.auto_link(@top_three_links[0][0]) %></td>
+      </tr>
+      <tr>
+        <td>2. <%= @top_three_teams[1][:name] %></td>
+        <td>29. <%= @bottom_three_teams[1][:name] %></td>
+        <td>2. <%= @top_three_pts[1][:name] %></td>
+        <td>2. <%= @top_three_svp[1][:name] %></td>
+        <td><%= Twitter::Autolink.auto_link(@top_three_links[1][0]) %></td>
+      </tr>
+      <tr>
+        <td>3. <%= @top_three_teams[2][:name] %></td>
+        <td>28. <%= @bottom_three_teams[2][:name] %></td>
+        <td>3. <%= @top_three_pts[2][:name] %></td>
+        <td>3. <%= @top_three_svp[2][:name] %></td>
+        <td><%= Twitter::Autolink.auto_link(@top_three_links[2][0]) %></td>
+      </tr>
+    </table>
+  </footer>
 </div>
