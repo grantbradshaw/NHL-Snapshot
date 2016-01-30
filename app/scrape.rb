@@ -99,15 +99,49 @@ module WebScrape
   end
 
   def self.next_game(team)
-    month_i = Time.now.month
-    month = month_i <= 9 ? "0" << month_i.to_s : month_i.to_s
+    this_month = Time.now.month
+    this_year = Time.now.year
+    this_month_s = month_string(this_month)
+    
+
+    if this_month == 12
+      next_month = 1
+      next_month_s = month_string(next_month)
+      next_year = this_year + 1
+    else
+      next_month = this_month + 1
+      next_month_s = month_string(next_month)
+      next_year = this_year
+    end
+    
+    team_acro = @team_acronyms[team]
+
+    this_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
+    this_month_schedule = JSON.load(this_month_file)
+
+    next_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{next_year.to_s}/#{next_month_s}/iphone/clubschedule.json")
+    next_month_schedule = JSON.load(next_month_file)
+
+    next_game = this_month_schedule['games'].detect { |game| game['status'] != 'FINAL'}
+    unless next_game
+      next_game = next_month_schedule['games'].detect { |game| game['status'] != 'FINAL'}
+    end
+
+
+    next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
+    next_game_day = next_game['startTime'].split(' ')[0]
+    next_game_hour = next_game['startTime'].split(' ')[1]
+    "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+  end
+
+  def self.month_string(month)
+    month <= 9 ? "0" << month.to_s : month.to_s
   end
 
   def self.all_teams
     @team_acronyms.keys
   end
 end
-
 
 
 
