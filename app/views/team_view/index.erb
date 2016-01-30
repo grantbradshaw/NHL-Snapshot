@@ -2,9 +2,18 @@
 
 <form method="get" action="/team_view">
   <select name="team_choice">
-    <option selected="select">Select Team...</option>
+    
+    <% if @team %>
+      <option selected="select">Select Team...</option>
+    <% else %>
+      <option>Select Team...</option>
+    <% end %>
     <% @teams.each do |team| %>
-      <option value='<%= team %>'><%= team %></option>
+      <% if @team == team %>
+        <option selected="select" value='<%= team %>'><%= team %></option>
+      <% else %>
+        <option value='<%= team %>'><%= team %></option>
+      <% end %>
     <% end %>
   </select>
 

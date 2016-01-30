@@ -43,6 +43,8 @@ get '/team_view' do
     @team_rank = WebScrape.team_rank(params[:team_choice])
     @top_player = WebScrape.top_scoring_player(params[:team_choice])
     @top_goalie = WebScrape.top_goalie(params[:team_choice])
+    @next_game = WebScrape.next_game(params[:team_choice])
+    @team = params[:team_choice]
   end
   @teams = WebScrape.all_teams.sort
   erb :'team_view/index'

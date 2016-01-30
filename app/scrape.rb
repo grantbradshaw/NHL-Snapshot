@@ -99,7 +99,8 @@ module WebScrape
   end
 
   def self.next_game(team)
-    
+    month_i = Time.now.month
+    month = month_i <= 9 ? "0" << month_i.to_s : month_i.to_s
   end
 
   def self.all_teams
