@@ -18,6 +18,19 @@ footer {
   min-height: 675px;
 }
 
+.nav-logo {
+  padding: 5px;
+}
+
+.navbar-nav > li > a {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar-brand {
+  line-height: 30px;
+}
+
 .generate {
   margin-top: 0.4em;
   height: 2.5em;
