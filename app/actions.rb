@@ -30,6 +30,6 @@ get '/' do
   @top_three_pts = WebScrape.top_three_pts
   @top_three_teams = WebScrape.top_three_teams
   @bottom_three_teams = WebScrape.bottom_three_teams
-  @top_three_links = SportsTwitter.popular("nhl", 10000, 3)
+  @top_three_links = SportsTwitter.popular("nhl", 10, 3)
   erb :index
 end
