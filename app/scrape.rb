@@ -97,6 +97,10 @@ module WebScrape
     player_id = ordered[-1]['id']
     [player_name, get_photo(player_id)]
   end
+
+  def self.all_teams
+    @team_acronyms.keys
+  end
 end
 
 

@@ -1,1 +1,9 @@
 <h1>Team View</h1>
+
+<select>
+  <option selected="select">Select Team...</option>
+  <% @teams.each do |team| %>
+    <option value='<%= team %>'><%= team %></option>
+  <% end %>
+</select>
+

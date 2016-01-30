@@ -39,5 +39,6 @@ post '/team_view' do
 end
 
 get '/team_view' do
+  @teams = WebScrape.all_teams
   erb :'team_view/index'
 end
