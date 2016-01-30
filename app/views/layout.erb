@@ -15,12 +15,7 @@
         <!-- Bootstrap core CSS -->
     <link href="/stylesheets/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/application.css">
-    <style>
-    body {
-      padding-top: 70px;
-    }
 
-    </style>
   </head>
 
    <body>
@@ -41,7 +36,7 @@
             <li><a href="/collections">Public Collections</a></li>
             <% if current_user %>
               <li><a href="/collection"><%= current_user.name %></a></li>
-              <li><a href="/logout">Logout</a></li>
+              <li><a href="/logout">Log Out</a></li>
             <% end %>
           </ul>
         </div>
