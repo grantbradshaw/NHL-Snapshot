@@ -1,3 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding-bottom: 168px;
+}
+
+footer {
+  width: 79%;
+  position: absolute;
+  bottom: 0;
+}
+
 .generate {
   margin-top: 0.4em;
   height: 2.5em;
@@ -14,17 +30,14 @@
   font-size: 1em;
 }
 
-
 .save-phrase {
-  margin-right: 16px; 
+  margin-right: 16px;
 }
 
-/*table {
-  margin: auto;
-}*/
 .delete-all {
   width: 25%;
 }
+
 .public-private {
   width: 25%
 }

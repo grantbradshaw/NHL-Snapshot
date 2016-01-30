@@ -18,7 +18,7 @@
         <input class="save-phrase btn btn-info pull-right" type="submit" value="Save this phrase">
       </form>
       <p>
-        Saved Phrases: <%= @phrase_count %>
+        <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
       </p>
     </div>
 
@@ -27,36 +27,41 @@
         You can't save when the field is blank! Shame on you :(
       </p>
     <% end %>
-  </div>
   <% end %>
+</div>
 
-<table style=100%>
-  <tr>
-    <td>Top Three Teams</td>
-    <td>Bottom Three Teams</td>
-    <td>Scoring Leaders</td>
-    <td>Top Goalies</td>
-    <td>Popular Links</td>
-  </tr>
-  <tr>
-    <td><%= @top_three_teams[0][:name] %></td>
-    <td><%= @bottom_three_teams[0][:name] %></td>
-    <td><%= @top_three_pts[0][:name] %></td>
-    <td><%= @top_three_svp[0][:name] %></td>
-    <td><%= Twitter::Autolink.auto_link(@top_three_links[0][0]) %></td>
-  </tr>
-  <tr>
-    <td><%= @top_three_teams[1][:name] %></td>
-    <td><%= @bottom_three_teams[1][:name] %></td>
-    <td><%= @top_three_pts[1][:name] %></td>
-    <td><%= @top_three_svp[1][:name] %></td>
-    <td><%= Twitter::Autolink.auto_link(@top_three_links[1][0]) %></td>
-  </tr>
-  <tr>
-    <td><%= @top_three_teams[2][:name] %></td>
-    <td><%= @bottom_three_teams[2][:name] %></td>
-    <td><%= @top_three_pts[2][:name] %></td>
-    <td><%= @top_three_svp[2][:name] %></td>
-    <td><%= Twitter::Autolink.auto_link(@top_three_links[2][0]) %></td>
-  </tr>
-</table>
+<div class="container">
+<footer>
+  <table class="table table-hover" style="width: 100%">
+    <tr>
+      <th>Top Three Teams</th>
+      <th>Bottom Three Teams</th>
+      <th>Scoring Leaders</th>
+      <th>Top Goalies</th>
+      <th>Popular Links</th>
+    </tr>
+    <tr>
+      <td><%= @top_three_teams[0][:name] %></td>
+      <td><%= @bottom_three_teams[0][:name] %></td>
+      <td><%= @top_three_pts[0][:name] %></td>
+      <td><%= @top_three_svp[0][:name] %></td>
+      <td><%= Twitter::Autolink.auto_link(@top_three_links[0][0]) %></td>
+    </tr>
+    <tr>
+      <td><%= @top_three_teams[1][:name] %></td>
+      <td><%= @bottom_three_teams[1][:name] %></td>
+      <td><%= @top_three_pts[1][:name] %></td>
+      <td><%= @top_three_svp[1][:name] %></td>
+      <td><%= Twitter::Autolink.auto_link(@top_three_links[1][0]) %></td>
+    </tr>
+    <tr>
+      <td><%= @top_three_teams[2][:name] %></td>
+      <td><%= @bottom_three_teams[2][:name] %></td>
+      <td><%= @top_three_pts[2][:name] %></td>
+      <td><%= @top_three_svp[2][:name] %></td>
+      <td><%= Twitter::Autolink.auto_link(@top_three_links[2][0]) %></td>
+    </tr>
+  </table>
+</footer>
+</div>
+
