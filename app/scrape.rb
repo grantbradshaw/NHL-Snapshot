@@ -8,7 +8,7 @@ module WebScrape
   standings = open('http://app.cgy.nhl.yinzcam.com/V2/Stats/Standings')
   @standings = Nokogiri::XML(standings.read)
 
-  teams = File.read('app/teams.json')
+  teams = File.read('teams.json')
   @team_acronyms = JSON.parse(teams)
 
 
@@ -67,4 +67,40 @@ module WebScrape
     teams = teams.sort_by { |team| team[:rank] }
     teams.reverse
   end
+
+  def self.team_rank(team)
+    res = league.detect { |find| find[:name] == team}
+    res[:rank]
+  end
+
+  def self.retrieve_team(team)
+    team_acro = @team_acronyms[team]
+    team_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20152016/2/#{team_acro}/iphone/playerstatsline.json")
+    JSON.load(team_file)
+  end
+
+  def self.get_photo(player_id)
+    "http://3.cdn.nhle.com/photos/mugs/thumb/#{player_id}.jpg"
+  end
+
+  def self.top_scoring_player(team)
+    team_players = retrieve_team(team)
+    player_name = team_players['skaterData'][0]['data'].split(', ')[2]
+    player_id = team_players['skaterData']['id']
+    [player_name, get_photo(player_id)]
+  end
+
+  def self.top_goalie(team)
+    team_players = retrieve_team(team)
+    ordered = team_players['goalieData'].sort_by { |goalie| goalie['data'].split(', ')[10]}
+    player_name = ordered[-1]['data'].split(', ')[2]
+    player_id = ordered[-1]['id']
+    [player_name, get_photo(player_id)]
+  end
 end
+
+puts WebScrape.top_goalie("Chicago Blackhawks").inspect
+
+
+
+
