@@ -86,7 +86,7 @@ module WebScrape
   def self.top_scoring_player(team)
     team_players = retrieve_team(team)
     player_name = team_players['skaterData'][0]['data'].split(', ')[2]
-    player_id = team_players['skaterData']['id']
+    player_id = team_players['skaterData'][0]['id']
     [player_name, get_photo(player_id)]
   end
 

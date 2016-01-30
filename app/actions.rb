@@ -39,6 +39,15 @@ post '/team_view' do
 end
 
 get '/team_view' do
-  @teams = WebScrape.all_teams
+  if params[:team_choice] && params[:team_choice] != "Select Team..."
+    @team_rank = WebScrape.team_rank(params[:team_choice])
+    @top_player = WebScrape.top_scoring_player(params[:team_choice])
+    @top_goalie = WebScrape.top_goalie(params[:team_choice])
+  end
+  @teams = WebScrape.all_teams.sort
   erb :'team_view/index'
+end
+
+post '/team_select' do
+
 end

@@ -1,9 +1,33 @@
 <h1>Team View</h1>
 
-<select>
-  <option selected="select">Select Team...</option>
-  <% @teams.each do |team| %>
-    <option value='<%= team %>'><%= team %></option>
-  <% end %>
-</select>
+<form method="get" action="/team_view">
+  <select name="team_choice">
+    <option selected="select">Select Team...</option>
+    <% @teams.each do |team| %>
+      <option value='<%= team %>'><%= team %></option>
+    <% end %>
+  </select>
+
+  <div>
+    <input type="submit" value="Get Team View">
+  </div>
+
+<% if @team_rank %>
+  <table>
+    <tr>
+      <td>Team Rank</td>
+      <td><%= @team_rank %></td>
+    </tr>
+    <tr>
+      <td>Top Scoring Player</td>
+      <td><img src='<%= @top_player[1] %>'/></td>
+      <td><%= @top_player[0] %></td>
+    </tr>
+    <tr>
+      <td>Top Goalie</td>
+      <td><img src='<%= @top_goalie[1] %>'/></td>
+      <td><%= @top_goalie[0] %></td>
+    </tr>
+  </table>
+<% end %>
 
