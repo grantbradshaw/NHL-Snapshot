@@ -98,6 +98,10 @@ module WebScrape
     [player_name, get_photo(player_id)]
   end
 
+  def self.next_game(team)
+    
+  end
+
   def self.all_teams
     @team_acronyms.keys
   end
