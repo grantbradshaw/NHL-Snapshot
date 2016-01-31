@@ -5,28 +5,46 @@
         <%= @sentence %>
       </h1>
     <% end %>
-
-    <form method="post" action='/saved_phrase'>
-      <div>
-        <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
-      </div>
-    </form>
-  </div>
-  <% if current_user %>
-      <form method="post" action='/saved_phrases'>
+    
+    <% if @use_twitter %>
+      <form method="post" action='/saved_nlp_phrase'>
         <div>
-        <input class="save-phrase btn btn-info pull-right" type="submit" value="Save this phrase">
+          <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
         </div>
       </form>
-      <p>
-        <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
-      </p>
-
-    <% if @field_blank %>
-      <p class="pull-right">
-        You can't save when the field is blank! Shame on you :(
-      </p>
+    <% else %>
+      <form method="post" action='/saved_phrase'>
+        <div>
+          <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
+        </div>
+      </form>
     <% end %>
+  </div>
+
+  <% if current_user %>
+     
+    <form method="post" action='/saved_phrases'>
+      <input class="save-phrase btn btn-info pull-right" type="submit" value="Save This Phrase">
+    </form>
+
+    <div class="saved-count">
+    <p>
+      <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
+    </p>
+    </div>
+ 
+    <% if @use_twitter %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="n">
+        <input class="toggle-twitter btn btn-danger pull-right" type="submit" value="Toggle Twitter Off">
+      </form>
+    <% else %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="y">
+        <input class="toggle-twitter btn btn-info pull-right" type="submit" value="Toggle Twitter On">
+      </form>
+    <% end %>
+
   <% end %>
 
   <footer>
@@ -36,7 +54,7 @@
         <th>Bottom Three Teams</th>
         <th>Scoring Leaders</th>
         <th>Top Goalies</th>
-        <th>Popular Links</th>
+        <th>Popular Twitter Links</th>
       </tr>
       <tr>
         <td>1. <%= @top_three_teams[0].name %></td>

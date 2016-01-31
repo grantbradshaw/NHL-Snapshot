@@ -20,12 +20,16 @@ helpers do
 end
 
 get '/' do
-  if session[:field_blank]
-    @field_blank = session[:field_blank]
-    session[:field_blank] = nil
-  end
+  
+  session[:current_phrase] ||= session[:twitter] ? SportsNLP.markov_speak(Sentence.random_player) : Sentence.sentence_creator
+  
   @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count if current_user
   @sentence = session[:current_phrase]
+
+  if params['twitter']
+    session[:twitter] = params['twitter'] == 'y' ? true : false
+  end
+  @use_twitter = session[:twitter]
 
   @top_three_svp = LeagueStat.where(search_term: 'top_three_svp').order(:rank)
   @top_three_pts = LeagueStat.where(search_term: 'top_three_pts').order(:rank)

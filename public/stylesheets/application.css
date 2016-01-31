@@ -10,8 +10,16 @@ footer {
   max-width: 1140px;
 }
 
+table {
+  background-color: rgba(245, 245, 245, .5);
+  border-radius: 8px;
+  overflow: hidden;
+  /* padding: 0; */
+}
+
 .jumbotron {
   margin-bottom: 10px;
+  background-color: rgba(245, 245, 245, .5);
 }
 
 .container.main {
@@ -50,8 +58,14 @@ footer {
   font-size: 1em;
 }
 
-.save-phrase {
-  margin-bottom: 10px;
+.saved-count {
+  width: 50%;
+}
+
+.toggle-twitter {
+  display: inline-block;
+  margin-top: -30px;
+  margin-right: 3px;
 }
 
 .delete-all {
@@ -62,13 +76,10 @@ footer {
   width: 25%
 }
 
-
 .jumbotron {
   background-color: rgba(245, 245, 245, .5);
 }
 
-table {
-  background-color: rgba(245, 245, 245, .5);
-  border-radius: 8px;
-  overflow: hidden;
+.team-submit {
+  margin-top: 6px;
 }

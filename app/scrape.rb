@@ -130,7 +130,14 @@ module WebScrape
     next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
     next_game_day = next_game['startTime'].split(' ')[0]
     next_game_hour = next_game['startTime'].split(' ')[1]
-    "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+
+    game_date = get_game_date(next_game_day)
+    
+    if game_date > Time.now
+      "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+    else
+      "Could not find this game"
+    end
   end
 
   def self.last_game(team)
@@ -168,15 +175,32 @@ module WebScrape
     last_game_score = last_game_outcome.split(' ')[0]
     last_game_day = last_game['startTime'].split(' ')[0]
 
-    if last_game_win_loss == 'W'
-      "Defeated the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+    all_games = []
+    all_games << last_month_schedule['games']
+    all_games << this_month_schedule['games']
+    all_games.flatten!
+
+    previous_games = all_games.select { |game| get_game_date(game['startTime'].split(' ')[0]) < Time.now}
+
+
+    if previous_games[-1]['status'] == 'FINAL'
+      if last_game_win_loss == 'W'
+        "Defeated the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+      else
+        "Lost to the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+      end
     else
-      "Lost to the <em>#{last_game_opponent[0]}</em> #{last_game_score} on #{last_game_day}"
+      'Could not find this game'
     end
   end
 
   def self.month_string(month)
     month <= 9 ? "0" << month.to_s : month.to_s
+  end
+
+  def self.get_game_date(date_string)
+    next_game_day_list = date_string.split('/')
+    Date.new(next_game_day_list[0].to_i, next_game_day_list[1].to_i, next_game_day_list[2].to_i, 23)
   end
 
   def self.all_teams

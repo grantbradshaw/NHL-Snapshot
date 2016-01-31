@@ -1,27 +1,27 @@
 <div class="container-fluid col-lg-8 col-lg-offset-2 col-sm-12">
 <h1>Team Snapshot</h1>
 
-<form method="get" action="/team_snapshot">
-  <select name="team_choice">
-    
-    <% if @team %>
-      <option selected="select">Select a team...</option>
-    <% else %>
-      <option>Select a team...</option>
-    <% end %>
-    <% @teams.each do |team| %>
-      <% if @team == team %>
-        <option selected="select" value='<%= team %>'><%= team %></option>
+<h2>
+  <form method="get" action="/team_snapshot">
+    <select name="team_choice">
+      <% if @team %>
+        <option selected="select">Select a team...</option>
       <% else %>
-        <option value='<%= team %>'><%= team %></option>
+        <option>Select a team...</option>
       <% end %>
-    <% end %>
-  </select>
+      <% @teams.each do |team| %>
+        <% if @team == team %>
+          <option selected="select" value='<%= team %>'><%= team %></option>
+        <% else %>
+          <option value='<%= team %>'><%= team %></option>
+        <% end %>
+      <% end %>
+    </select>
 
-  <div>
-    <input class="btn btn-info btn-sm" type="submit" value="Get Team Snapshot!">
-  </div>
-  </form>
+    <input class="team-submit btn btn-info btn-xs" type="submit" value="Get Team Snapshot!">
+
+    </form>
+  </h2>
 
 <% if @team_rank %>
   <table class="table table-hover team-snap" style="width: 100%">
