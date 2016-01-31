@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130230227) do
+ActiveRecord::Schema.define(version: 20160131002214) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(version: 20160130230227) do
     t.string   "title",      default: "My Collection"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
+  end
+
+  create_table "league_stats", force: :cascade do |t|
+    t.string   "search_term"
+    t.integer  "rank"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "saved_phrases", force: :cascade do |t|

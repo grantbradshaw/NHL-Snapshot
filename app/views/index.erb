@@ -39,24 +39,24 @@
         <th>Popular Links</th>
       </tr>
       <tr>
-        <td>1. <%= @top_three_teams[0][:name] %></td>
-        <td>30. <%= @bottom_three_teams[0][:name] %></td>
-        <td>1. <%= @top_three_pts[0][:name] %></td>
-        <td>1. <%= @top_three_svp[0][:name] %></td>
+        <td>1. <%= @top_three_teams[0].name %></td>
+        <td>30. <%= @bottom_three_teams[0].name %></td>
+        <td>1. <%= @top_three_pts[0].name %></td>
+        <td>1. <%= @top_three_svp[0].name %></td>
         <td><%= Twitter::Autolink.auto_link(@top_three_links[0].message) %></td>
       </tr>
       <tr>
-        <td>2. <%= @top_three_teams[1][:name] %></td>
-        <td>29. <%= @bottom_three_teams[1][:name] %></td>
-        <td>2. <%= @top_three_pts[1][:name] %></td>
-        <td>2. <%= @top_three_svp[1][:name] %></td>
+        <td>2. <%= @top_three_teams[1].name %></td>
+        <td>29. <%= @bottom_three_teams[1].name %></td>
+        <td>2. <%= @top_three_pts[1].name %></td>
+        <td>2. <%= @top_three_svp[1].name %></td>
         <td><%= Twitter::Autolink.auto_link(@top_three_links[1].message) %></td>
       </tr>
       <tr>
-        <td>3. <%= @top_three_teams[2][:name] %></td>
-        <td>28. <%= @bottom_three_teams[2][:name] %></td>
-        <td>3. <%= @top_three_pts[2][:name] %></td>
-        <td>3. <%= @top_three_svp[2][:name] %></td>
+        <td>3. <%= @top_three_teams[2].name %></td>
+        <td>28. <%= @bottom_three_teams[2].name %></td>
+        <td>3. <%= @top_three_pts[2].name %></td>
+        <td>3. <%= @top_three_svp[2].name %></td>
         <td><%= Twitter::Autolink.auto_link(@top_three_links[2].message) %></td>
       </tr>
     </table>
