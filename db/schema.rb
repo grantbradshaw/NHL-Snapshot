@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160131002214) do
+ActiveRecord::Schema.define(version: 20160131010124) do
 
   create_table "collections", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20160131002214) do
   create_table "saved_phrases", force: :cascade do |t|
     t.integer "collection_id"
     t.string  "phrase"
+  end
+
+  create_table "team_stats", force: :cascade do |t|
+    t.string   "team"
+    t.string   "rank"
+    t.string   "top_player"
+    t.string   "top_player_photo"
+    t.string   "top_goalie"
+    t.string   "top_goalie_photo"
+    t.string   "next_game"
+    t.string   "last_game"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "tweets", force: :cascade do |t|

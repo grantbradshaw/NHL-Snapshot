@@ -78,3 +78,21 @@ task 'db:league_stats_populate' do
     LeagueStat.create(search_term: 'bottom_three_teams', name: team[:name], rank: index)
   end
 end
+
+desc 'Pulls each teams statistics'
+task 'db:team_stats_populate' do
+  TeamStat.destroy_all
+
+  WebScrape.all_teams.each do |team|
+    TeamStat.create(
+      team: team,
+      rank: WebScrape.team_rank(team),
+      top_player: WebScrape.top_scoring_player(team)[0],
+      top_player_photo: WebScrape.top_scoring_player(team)[1],
+      top_goalie: WebScrape.top_goalie(team)[0],
+      top_goalie_photo: WebScrape.top_goalie(team)[1],
+      next_game: WebScrape.next_game(team),
+      last_game: WebScrape.last_game(team)
+      )
+  end
+end
