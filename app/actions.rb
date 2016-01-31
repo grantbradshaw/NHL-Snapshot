@@ -31,7 +31,7 @@ get '/' do
   @top_three_pts = WebScrape.top_three_pts
   @top_three_teams = WebScrape.top_three_teams
   @bottom_three_teams = WebScrape.bottom_three_teams
-  @top_three_links = SportsTwitter.popular("nhl", 10, 3)
+  @top_three_links = Tweet.all.where(search_term: 'nhl')
   erb :index
 end
 

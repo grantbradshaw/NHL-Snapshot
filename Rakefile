@@ -39,3 +39,21 @@ task "db:populate" do
 
   puts User.all.inspect
 end
+
+desc 'Pulls tweets for searching'
+task 'db:tweets_populate' do
+  Tweet.destroy_all
+
+  SportsTwitter.popular("nhl", 10, 3).each do |twit|
+    Tweet.create(message: twit[0], search_term: 'nhl')
+  end
+  
+  # Sentence.all_players.each do |player|
+  #   sleep(2)
+  #   SportsTwitter.search(player, 1).each do |twit|
+  #     Tweet.create(message: twit.text, search_term: player)
+  #   end
+  # end
+
+  puts Tweet.all.inspect
+end

@@ -25,6 +25,6 @@ module SportsTwitter
   end
 
   def self.popular(term, quantity, results)
-    find_url(term, quantity).frequency.sort_by(&:last).reverse[0..results]
+    find_url(term, quantity).frequency.sort_by(&:last).reverse[0..(results -1)]
   end
 end
