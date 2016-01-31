@@ -46,6 +46,16 @@ module Sentence
     @generator["athletes"][random_team].sample
   end
 
+  def self.all_players
+    players = []
+    @generator.keys.each do |team|
+      @generator[team].each do |player|
+        players << player
+      end
+    end
+    players
+  end
+
   private
     def self.random_team
       @generator["athletes"].keys.sample

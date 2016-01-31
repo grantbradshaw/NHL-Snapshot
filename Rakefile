@@ -39,3 +39,60 @@ task "db:populate" do
 
   puts User.all.inspect
 end
+
+desc 'Pulls tweets for searching'
+task 'db:tweets_populate' do
+  Tweet.destroy_all
+
+  SportsTwitter.popular("nhl", 1000, 3).each do |twit|
+    Tweet.create(message: twit[0], search_term: 'nhl')
+  end
+  
+  # Sentence.all_players.each do |player|
+  #   sleep(2)
+  #   SportsTwitter.search(player, 1).each do |twit|
+  #     Tweet.create(message: twit.text, search_term: player)
+  #   end
+  # end
+
+  puts Tweet.all.inspect
+end
+
+desc 'Pulls overall league stats'
+task 'db:league_stats_populate' do
+  LeagueStat.destroy_all
+
+  WebScrape.top_three_svp.each_with_index do |player, index|
+    LeagueStat.create(search_term: 'top_three_svp', name: player[:name], rank: index)
+  end
+
+  WebScrape.top_three_pts.each_with_index do |player, index|
+    LeagueStat.create(search_term: 'top_three_pts', name: player[:name], rank: index)
+  end
+
+  WebScrape.top_three_teams.each_with_index do |team, index|
+    LeagueStat.create(search_term: 'top_three_teams', name: team[:name], rank: index)
+  end
+
+  WebScrape.bottom_three_teams.each_with_index do |team, index|
+    LeagueStat.create(search_term: 'bottom_three_teams', name: team[:name], rank: index)
+  end
+end
+
+desc 'Pulls each teams statistics'
+task 'db:team_stats_populate' do
+  TeamStat.destroy_all
+
+  WebScrape.all_teams.each do |team|
+    TeamStat.create(
+      team: team,
+      rank: WebScrape.team_rank(team),
+      top_player: WebScrape.top_scoring_player(team)[0],
+      top_player_photo: WebScrape.top_scoring_player(team)[1],
+      top_goalie: WebScrape.top_goalie(team)[0],
+      top_goalie_photo: WebScrape.top_goalie(team)[1],
+      next_game: WebScrape.next_game(team),
+      last_game: WebScrape.last_game(team)
+      )
+  end
+end

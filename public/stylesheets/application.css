@@ -20,7 +20,7 @@ footer {
 }
 
 .nav-logo {
-  padding: 5px;
+  padding: 5px 10px 5px 30px;
 }
 
 .navbar-nav > li > a {
@@ -30,6 +30,8 @@ footer {
 
 .navbar-brand {
   line-height: 30px;
+  height: 60px;
+  font-size: 22px;
 }
 
 .generate {

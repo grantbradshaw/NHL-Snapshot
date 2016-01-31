@@ -1,12 +1,13 @@
+<div class="container-fluid col-lg-8 col-lg-offset-2 col-sm-12">
 <h1>Team Snapshot</h1>
 
 <form method="get" action="/team_snapshot">
   <select name="team_choice">
     
     <% if @team %>
-      <option selected="select">Select Team...</option>
+      <option selected="select">Select a team...</option>
     <% else %>
-      <option>Select Team...</option>
+      <option>Select a team...</option>
     <% end %>
     <% @teams.each do |team| %>
       <% if @team == team %>
@@ -18,33 +19,34 @@
   </select>
 
   <div>
-    <input type="submit" value="Get Team View">
+    <input class="btn btn-info btn-sm" type="submit" value="Get Team Snapshot!">
   </div>
+  </form>
 
 <% if @team_rank %>
-  <table>
+  <table class="table table-hover team-snap" style="width: 100%">
     <tr>
-      <td>Team Rank</td>
+      <th>Current place in the standings</th>
       <td><%= @team_rank %></td>
     </tr>
     <tr>
-      <td>Top Scoring Player</td>
-      <td><img src='<%= @top_player[1] %>'/></td>
-      <td><%= @top_player[0] %></td>
+      <th>Top Scoring Player</th>
+      <td><img src='<%= @top_player_photo %>'/>
+      <p><%= @top_player_name %></p></td>
     </tr>
     <tr>
-      <td>Top Goalie</td>
-      <td><img src='<%= @top_goalie[1] %>'/></td>
-      <td><%= @top_goalie[0] %></td>
+      <th>Top Goalie</th>
+      <td><img src='<%= @top_goalie_photo %>'/>
+      <p><%= @top_goalie_name %></p></td>
     </tr>
     <tr>
-      <td>Next Game</td>
+      <th>Next Game</th>
       <td><%= @next_game %></td>
     </tr>
     <tr>
-      <td>Last Game</td>
+      <th>Last Game</th>
       <td><%= @last_game %></td>
     </tr>
   </table>
 <% end %>
-
+</div>
