@@ -27,10 +27,10 @@ get '/' do
   @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count if current_user
   @sentence = session[:current_phrase]
 
-  @top_three_svp = WebScrape.top_three_svp
-  @top_three_pts = WebScrape.top_three_pts
-  @top_three_teams = WebScrape.top_three_teams
-  @bottom_three_teams = WebScrape.bottom_three_teams
+  @top_three_svp = LeagueStat.where(search_term: 'top_three_svp').order(:rank)
+  @top_three_pts = LeagueStat.where(search_term: 'top_three_pts').order(:rank)
+  @top_three_teams = LeagueStat.where(search_term: 'top_three_teams').order(:rank)
+  @bottom_three_teams = LeagueStat.where(search_term: 'bottom_three_teams').order(:rank)
   @top_three_links = Tweet.all.where(search_term: 'nhl')
   erb :index
 end

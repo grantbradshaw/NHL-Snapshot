@@ -44,7 +44,7 @@ desc 'Pulls tweets for searching'
 task 'db:tweets_populate' do
   Tweet.destroy_all
 
-  SportsTwitter.popular("nhl", 10, 3).each do |twit|
+  SportsTwitter.popular("nhl", 1000, 3).each do |twit|
     Tweet.create(message: twit[0], search_term: 'nhl')
   end
   
@@ -56,4 +56,25 @@ task 'db:tweets_populate' do
   # end
 
   puts Tweet.all.inspect
+end
+
+desc 'Pulls overall league stats'
+task 'db:league_stats_populate' do
+  LeagueStat.destroy_all
+
+  WebScrape.top_three_svp.each_with_index do |player, index|
+    LeagueStat.create(search_term: 'top_three_svp', name: player[:name], rank: index)
+  end
+
+  WebScrape.top_three_pts.each_with_index do |player, index|
+    LeagueStat.create(search_term: 'top_three_pts', name: player[:name], rank: index)
+  end
+
+  WebScrape.top_three_teams.each_with_index do |team, index|
+    LeagueStat.create(search_term: 'top_three_teams', name: team[:name], rank: index)
+  end
+
+  WebScrape.bottom_three_teams.each_with_index do |team, index|
+    LeagueStat.create(search_term: 'bottom_three_teams', name: team[:name], rank: index)
+  end
 end
