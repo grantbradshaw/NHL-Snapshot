@@ -4,7 +4,7 @@ module SportsNLP
 
   def self.train(string)
     SportsTwitter.search(string, 400).each do |tweet|
-      @markov.parse_string(remove_url(tweet.text))
+      @markov.parse_string(clean_tweet(tweet.text))
     end
   end
 
@@ -15,7 +15,21 @@ module SportsNLP
     word
   end
 
+  def self.clean_tweet(string)
+    string = remove_url(string)
+    string = remove_hashtag(string)
+    string = remove_reference(string)
+  end
+
   def self.remove_url(string)
     string.gsub(URI.regexp, '')
+  end
+
+  def self.remove_hashtag(string)
+    string.gsub(/#\w*/, '')
+  end
+
+  def self.remove_reference(string)
+    string.gsub(/@\w*/, '')
   end
 end
