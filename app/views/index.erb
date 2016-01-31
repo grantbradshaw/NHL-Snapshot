@@ -5,12 +5,20 @@
         <%= @sentence %>
       </h1>
     <% end %>
-
-    <form method="post" action='/saved_nlp_phrase'>
-      <div>
-        <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
-      </div>
-    </form>
+    
+    <% if @use_twitter %>
+      <form method="post" action='/saved_nlp_phrase'>
+        <div>
+          <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
+        </div>
+      </form>
+    <% else %>
+      <form method="post" action='/saved_phrase'>
+        <div>
+          <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
+        </div>
+      </form>
+    <% end %>
   </div>
 
   
@@ -23,12 +31,23 @@
       <p>
         <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
       </p>
-
     <% if @field_blank %>
       <p class="pull-right">
         You can't save when the field is blank! Shame on you :(
       </p>
     <% end %>
+  <% end %>
+
+  <% if @use_twitter %>
+    <form method='get' action='/'>
+      <input class="hidden" name="twitter" value="n">
+      <input class="btn btn-info" type="submit" value="Toggle Twitter Off">
+    </form>
+  <% else %>
+    <form method='get' action='/'>
+      <input class="hidden" name="twitter" value="y">
+      <input class="btn btn-info" type="submit" value="Toggle Twitter On">
+    </form>
   <% end %>
 
   <footer>
@@ -38,7 +57,7 @@
         <th>Bottom Three Teams</th>
         <th>Scoring Leaders</th>
         <th>Top Goalies</th>
-        <th>Popular Links</th>
+        <th>Popular Twitter Links</th>
       </tr>
       <tr>
         <td>1. <%= @top_three_teams[0].name %></td>
