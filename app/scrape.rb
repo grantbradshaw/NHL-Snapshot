@@ -130,7 +130,15 @@ module WebScrape
     next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
     next_game_day = next_game['startTime'].split(' ')[0]
     next_game_hour = next_game['startTime'].split(' ')[1]
-    "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+
+    next_game_day_list = next_game_day.split('/')
+    game_date = Date.new(next_game_day_list[0].to_i, next_game_day_list[1].to_i, next_game_day_list[2].to_i, 23)
+    
+    if game_date > Time.now
+      "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+    else
+      "Could not find this game"
+    end
   end
 
   def self.last_game(team)
