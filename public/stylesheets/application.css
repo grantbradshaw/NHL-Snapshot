@@ -59,3 +59,17 @@ footer {
 .public-private {
   width: 25%
 }
+
+.table {
+  padding: 0px;
+}
+
+.jumbotron {
+  background-color: rgba(245, 245, 245, .5);
+}
+
+table {
+  background-color: rgba(245, 245, 245, .5);
+  border-radius: 8px;
+  overflow: hidden;
+}
