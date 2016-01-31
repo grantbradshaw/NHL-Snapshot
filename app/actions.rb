@@ -23,11 +23,6 @@ get '/' do
   
   session[:current_phrase] ||= session[:twitter] ? SportsNLP.markov_speak(Sentence.random_player) : Sentence.sentence_creator
   
-
-  if session[:field_blank]
-    @field_blank = session[:field_blank]
-    session[:field_blank] = nil
-  end
   @phrase_count = Collection.find_by(user_id: current_user.id).saved_phrases.count if current_user
   @sentence = session[:current_phrase]
 

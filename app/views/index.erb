@@ -32,11 +32,6 @@
       <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
     </p>
     </div>
-    <% if @field_blank %>
-      <p class="pull-right">
-        You can't save when the field is blank! Shame on you :(
-      </p>
-    <% end %>
  
     <% if @use_twitter %>
       <form method='get' action='/'>
