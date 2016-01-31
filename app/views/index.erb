@@ -32,6 +32,7 @@
       <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
     </p>
     </div>
+  
  
     <% if @use_twitter %>
       <form method='get' action='/'>
@@ -42,7 +43,21 @@
       <form method='get' action='/'>
         <input class="hidden" name="twitter" value="y">
         <input class="toggle-twitter btn btn-info pull-right" type="submit" value="Toggle Twitter On">
+      </form>    
+    <% end %>
+
+  <% else %>
+
+    <% if @use_twitter %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="n">
+        <input class="toggle-twitter-logged-out btn btn-danger pull-right" type="submit" value="Toggle Twitter Off">
       </form>
+    <% else %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="y">
+        <input class="toggle-twitter-logged-out btn btn-info pull-right" type="submit" value="Toggle Twitter On">
+      </form>    
     <% end %>
 
   <% end %>
