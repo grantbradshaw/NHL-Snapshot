@@ -21,33 +21,35 @@
     <% end %>
   </div>
 
-  
   <% if current_user %>
-      <form method="post" action='/saved_phrases'>
-        <div>
-        <input class="save-phrase btn btn-info pull-right" type="submit" value="Save this phrase">
-        </div>
-      </form>
-      <p>
-        <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
-      </p>
+     
+    <form method="post" action='/saved_phrases'>
+      <input class="save-phrase btn btn-info pull-right" type="submit" value="Save This Phrase">
+    </form>
+
+    <div class="saved-count">
+    <p>
+      <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
+    </p>
+    </div>
     <% if @field_blank %>
       <p class="pull-right">
         You can't save when the field is blank! Shame on you :(
       </p>
     <% end %>
-  <% end %>
+ 
+    <% if @use_twitter %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="n">
+        <input class="toggle-twitter btn btn-danger pull-right" type="submit" value="Toggle Twitter Off">
+      </form>
+    <% else %>
+      <form method='get' action='/'>
+        <input class="hidden" name="twitter" value="y">
+        <input class="toggle-twitter btn btn-info pull-right" type="submit" value="Toggle Twitter On">
+      </form>
+    <% end %>
 
-  <% if @use_twitter %>
-    <form method='get' action='/'>
-      <input class="hidden" name="twitter" value="n">
-      <input class="btn btn-info" type="submit" value="Toggle Twitter Off">
-    </form>
-  <% else %>
-    <form method='get' action='/'>
-      <input class="hidden" name="twitter" value="y">
-      <input class="btn btn-info" type="submit" value="Toggle Twitter On">
-    </form>
   <% end %>
 
   <footer>

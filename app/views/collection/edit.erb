@@ -1,9 +1,11 @@
-<h3>Edit Collection Title</h3>
+<div class="container-fluid col-lg-8 col-lg-offset-2 col-sm-12">
+  <h1>Edit Collection Title</h1>
 
-<form method="POST" action='/users/<%= current_user.id %>/collection'>
-  <input type="hidden" name="_method" value="PUT" />
-  <div>
-    <input type="text" placeholder="New Collection Title", name="title"/>
-    <input type="submit" value="Edit title"/>
-  </div>
-</form>
+  <form method="POST" action='/users/<%= current_user.id %>/collection'>
+    <input type="hidden" name="_method" value="PUT" />
+    <div>
+      <input type="text" placeholder="New Collection Title", name="title"/>
+      <input type="submit" class="btn btn-info btn-xs" value="Edit title"/>
+    </div>
+  </form>
+</div>
