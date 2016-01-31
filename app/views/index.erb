@@ -6,12 +6,14 @@
       </h1>
     <% end %>
 
-    <form method="post" action='/saved_phrase'>
+    <form method="post" action='/saved_nlp_phrase'>
       <div>
         <input class="generate btn btn-success btn-sm-2" type="submit" value="MAKE ME SPORTER">
       </div>
     </form>
   </div>
+
+  
   <% if current_user %>
       <form method="post" action='/saved_phrases'>
         <div>

@@ -3,10 +3,10 @@ post '/saved_phrase' do
   redirect '/'
 end
 
-# post '/saved_phrase' do
-#   session[:current_phrase] = SportsNLP.markov_speak(Sentence.random_player)
-#   redirect '/'
-# end
+post '/saved_nlp_phrase' do
+  session[:current_phrase] = SportsNLP.markov_speak(Sentence.random_player)
+  redirect '/'
+end
 
 post '/saved_phrases' do 
   @saved_phrase = SavedPhrase.new(

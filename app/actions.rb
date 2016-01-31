@@ -20,6 +20,7 @@ helpers do
 end
 
 get '/' do
+  session[:current_phrase] ||= Sentence.sentence_creator
   if session[:field_blank]
     @field_blank = session[:field_blank]
     session[:field_blank] = nil
