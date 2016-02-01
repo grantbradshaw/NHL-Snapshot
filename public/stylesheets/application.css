@@ -87,3 +87,8 @@ table {
 .toggle-twitter-logged-out {
   margin-right: 137px;
 }
+
+footer {
+  position: fixed;
+  bottom: 0px;
+}
