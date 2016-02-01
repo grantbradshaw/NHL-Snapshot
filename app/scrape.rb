@@ -109,9 +109,8 @@ module WebScrape
       next_month_s = month_string(next_month)
       next_year = this_year + 1
     else
-      # next_month = this_month + 1
-      this_month = Time.now.month - 1
-      next_month = this_month  
+      this_month = Time.now.month
+      next_month = this_month + 1
       next_month_s = month_string(next_month)
       next_year = this_year
     end
@@ -121,22 +120,33 @@ module WebScrape
     this_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
     this_month_schedule = JSON.load(this_month_file)
 
-    next_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{next_year.to_s}/#{next_month_s}/iphone/clubschedule.json")
-    next_month_schedule = JSON.load(next_month_file)
+    begin
+      next_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{next_year.to_s}/#{next_month_s}/iphone/clubschedule.json")
+      next_month_schedule = JSON.load(next_month_file)
+    rescue 
+      next_month_schedule = nil
+    end
 
     next_game = this_month_schedule['games'].detect { |game| game['status'] != 'FINAL'}
     unless next_game
-      next_game = next_month_schedule['games'].detect { |game| game['status'] != 'FINAL'}
+      next_game = next_month_schedule['games'].detect { |game| game['status'] != 'FINAL'} unless next_month_schedule
     end
 
-    next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
-    next_game_day = next_game['startTime'].split(' ')[0]
-    next_game_hour = next_game['startTime'].split(' ')[1]
 
-    game_date = get_game_date(next_game_day)
+    if next_game
+      next_game_opponent = @team_acronyms.detect { |k,v| v == next_game['abb']}
+      next_game_day = next_game['startTime'].split(' ')[0]
+      next_game_hour = next_game['startTime'].split(' ')[1]
+
+      game_date = get_game_date(next_game_day)
+    end
     
-    if game_date > Time.now
-      "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+    if next_game_opponent
+      if game_date > Time.now
+        "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
+      else
+        "Could not find this game"
+      end
     else
       "Could not find this game"
     end
