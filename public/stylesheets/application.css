@@ -1,6 +1,7 @@
 body {
   padding-top: 70px;
-  background-image: url("/images/ice-bg.jpg")
+  background-image: url("/images/ice-bg.jpg");
+  position: relative;
 }
 
 footer {
@@ -90,6 +91,6 @@ table {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0px;
 }
