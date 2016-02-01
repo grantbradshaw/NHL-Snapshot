@@ -6,7 +6,7 @@ body {
 }
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 1140px;
@@ -76,7 +76,7 @@ table {
 }
 
 .public-private {
-  width: 25%
+  width: 25%;
 }
 
 .jumbotron {
@@ -85,9 +85,4 @@ table {
 
 .team-submit {
   margin-top: 6px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0px;
 }

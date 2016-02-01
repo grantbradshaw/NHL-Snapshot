@@ -27,15 +27,15 @@ task "db:populate" do
   Collection.destroy_all
   SavedPhrase.destroy_all
 
-  @user1 = User.create(name: 'developer')
-  @user2 = User.create(name: 'test')
-  @user3 = User.create(name: 'user')
-  @user4 = User.create(name: 'another')
+  @user1 = User.create(name: 'sp0rtzguy123')
+  @user2 = User.create(name: 'Grant')
+  @user3 = User.create(name: 'Coleson')
+  @user4 = User.create(name: 'Kay')
 
-  Collection.create(user_id: @user1.id, title: 'Developer Collection')
-  Collection.create(user_id: @user2.id, title: 'Test Collection')
-  Collection.create(user_id: @user3.id, title: 'User Collection')
-  Collection.create(user_id: @user4.id)
+  Collection.create(user_id: @user1.id)
+  Collection.create(user_id: @user2.id, title: 'My HILARIOUS Collection')
+  Collection.create(user_id: @user3.id, title: 'Super Cool Hockey Thangs')
+  Collection.create(user_id: @user4.id, title: 'Pls Upvote Mine Kthnx')
 
   puts User.all.inspect
 end

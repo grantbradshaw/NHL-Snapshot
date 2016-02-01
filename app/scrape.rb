@@ -109,7 +109,9 @@ module WebScrape
       next_month_s = month_string(next_month)
       next_year = this_year + 1
     else
-      next_month = this_month + 1
+      # next_month = this_month + 1
+      this_month = Time.now.month - 1
+      next_month = this_month  
       next_month_s = month_string(next_month)
       next_year = this_year
     end
