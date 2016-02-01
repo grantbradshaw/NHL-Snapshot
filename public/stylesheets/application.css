@@ -84,3 +84,7 @@ table {
 .team-submit {
   margin-top: 6px;
 }
+footer {
+  position: fixed;
+  bottom: 0px;
+}
