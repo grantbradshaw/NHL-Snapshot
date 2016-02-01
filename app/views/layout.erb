@@ -41,6 +41,8 @@
             <% if current_user %>
               <li><a href="/collection"><%= current_user.name %></a></li>
               <li><a href="/logout">Log Out</a></li>
+            <% else %>
+              <li><a href="/login/1">Log In</a></li>
             <% end %>
           </ul>
         </div>

@@ -23,17 +23,6 @@
 
   <% if current_user %>
      
-    <form method="post" action='/saved_phrases'>
-      <input class="save-phrase btn btn-info pull-right" type="submit" value="Save This Phrase">
-    </form>
-
-    <div class="saved-count">
-    <p>
-      <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
-    </p>
-    </div>
-  
- 
     <% if @use_twitter %>
       <form method='get' action='/'>
         <input class="hidden" name="twitter" value="n">
@@ -46,6 +35,16 @@
       </form>    
     <% end %>
 
+    <form method="post" action='/saved_phrases'>
+      <input class="save-phrase btn btn-info pull-right" type="submit" value="Save This Phrase">
+    </form>
+
+    <div class="saved-count">
+    <p>
+      <a href="/collection">Saved Phrases: <%= @phrase_count %></a>
+    </p>
+    </div>
+  
   <% else %>
 
     <% if @use_twitter %>
