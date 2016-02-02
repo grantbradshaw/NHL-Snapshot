@@ -3,7 +3,9 @@ source "https://rubygems.org"
 
 gem 'rake'
 gem 'activesupport'
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 gem 'sinatra'
 gem 'sinatra-contrib'
