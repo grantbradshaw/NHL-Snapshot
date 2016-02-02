@@ -1,11 +1,11 @@
 module WebScrape
-  points_leaders_file = open('https://nhlwc.cdnak.neulion.com/fs1/nhl/league/leagueleaders/iphone/points/leagueleaders.json')
+  points_leaders_file = open('http://nhlwc.cdnak.neulion.com/fs1/nhl/league/leagueleaders/iphone/points/leagueleaders.json')
   @points_leaders = JSON.load(points_leaders_file)
 
-  svp_leaders_file = open('https://nhlwc.cdnak.neulion.com/fs1/nhl/league/leagueleaders/iphone/savepercentage/leagueleaders.json')
+  svp_leaders_file = open('http://nhlwc.cdnak.neulion.com/fs1/nhl/league/leagueleaders/iphone/savepercentage/leagueleaders.json')
   @svp_leaders = JSON.load(svp_leaders_file)
 
-  standings = open('https://app.cgy.nhl.yinzcam.com/V2/Stats/Standings')
+  standings = open('http://app.cgy.nhl.yinzcam.com/V2/Stats/Standings')
   @standings = Nokogiri::XML(standings.read)
 
   teams = File.read('app/teams.json')
@@ -75,12 +75,12 @@ module WebScrape
 
   def self.retrieve_team(team)
     team_acro = @team_acronyms[team]
-    team_file = open("https://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20152016/2/#{team_acro}/iphone/playerstatsline.json")
+    team_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/playerstatsline/20152016/2/#{team_acro}/iphone/playerstatsline.json")
     JSON.load(team_file)
   end
 
   def self.get_photo(player_id)
-    "https://3.cdn.nhle.com/photos/mugs/thumb/#{player_id}.jpg"
+    "http://3.cdn.nhle.com/photos/mugs/thumb/#{player_id}.jpg"
   end
 
   def self.top_scoring_player(team)
@@ -117,11 +117,11 @@ module WebScrape
     
     team_acro = @team_acronyms[team]
 
-    this_month_file = open("https://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
+    this_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
     this_month_schedule = JSON.load(this_month_file)
 
     begin
-      next_month_file = open("https://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{next_year.to_s}/#{next_month_s}/iphone/clubschedule.json")
+      next_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{next_year.to_s}/#{next_month_s}/iphone/clubschedule.json")
       next_month_schedule = JSON.load(next_month_file)
     rescue 
       next_month_schedule = nil
@@ -170,10 +170,10 @@ module WebScrape
     
     team_acro = @team_acronyms[team]
 
-    this_month_file = open("https://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
+    this_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{this_year.to_s}/#{this_month_s}/iphone/clubschedule.json")
     this_month_schedule = JSON.load(this_month_file)
 
-    last_month_file = open("https://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{last_year.to_s}/#{last_month_s}/iphone/clubschedule.json")
+    last_month_file = open("http://nhlwc.cdnak.neulion.com/fs1/nhl/league/clubschedule/#{team_acro}/#{last_year.to_s}/#{last_month_s}/iphone/clubschedule.json")
     last_month_schedule = JSON.load(last_month_file)
 
     last_game = this_month_schedule['games'].reverse.detect { |game| game['status'] == 'FINAL'}
