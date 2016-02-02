@@ -19,6 +19,7 @@ module SportsNLP
     string = remove_url(string)
     string = remove_hashtag(string)
     string = remove_reference(string)
+    string = remove_retweet(string)
   end
 
   def self.remove_url(string)
@@ -31,5 +32,9 @@ module SportsNLP
 
   def self.remove_reference(string)
     string.gsub(/@\w*/, '')
+  end
+
+  def self.remove_retweet(string)
+    string.gsub(/ ?RT/, '')
   end
 end
