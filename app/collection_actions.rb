@@ -8,7 +8,7 @@ get '/collections' do
   @collections = Collection.includes(:upvotes)
                 .references(:upvotes)
                 .where('collections.shared = ?', true)
-                .group('collections.id')
+                .group('collections.id', 'upvotes.id')
                 .order('count(upvotes.collection_id) DESC')
   @user = session[:user]
   erb :'/collections/index'
