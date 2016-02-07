@@ -142,7 +142,7 @@ module WebScrape
     end
     
     if next_game_opponent
-      if game_date > Time.now
+      if game_date >= Date.today
         "Against the <em>#{next_game_opponent[0]}</em> on #{next_game_day} at #{next_game_hour}"
       else
         "Could not find this game"
@@ -192,7 +192,7 @@ module WebScrape
     all_games << this_month_schedule['games']
     all_games.flatten!
 
-    previous_games = all_games.select { |game| get_game_date(game['startTime'].split(' ')[0]) < Time.now}
+    previous_games = all_games.select { |game| get_game_date(game['startTime'].split(' ')[0]) < Date.today}
 
 
     if previous_games[-1]['status'] == 'FINAL'
@@ -212,7 +212,7 @@ module WebScrape
 
   def self.get_game_date(date_string)
     next_game_day_list = date_string.split('/')
-    Date.new(next_game_day_list[0].to_i, next_game_day_list[1].to_i, next_game_day_list[2].to_i, 23)
+    Date.new(next_game_day_list[0].to_i, next_game_day_list[1].to_i, next_game_day_list[2].to_i)
   end
 
   def self.all_teams
