@@ -13,4 +13,4 @@ Website built in Sinatra that provides a variety of services to those who want a
 - A generator that provides talking points either from 'mad libs' style string generation or application of a Markov Chain to refined tweets 
 - User collections that can be shared to the community and upvoted by other users
 
-The application used a range of tools including the Twitter API, Markov Chains, web scraping, along with the MVC model, validations and the Active Record ORM.
+The application used a range of tools including the Twitter API, Markov Chains, web scraping, along with utilizing the MVC model, validations and the Active Record ORM.
