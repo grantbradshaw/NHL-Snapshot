@@ -1,10 +1,12 @@
+require_relative 'api_key'
+
 module SportsTwitter
 
   include Twitter::Extractor
 
   @client = Twitter::REST::Client.new do |config|
-    config.consumer_key        = "8LmHZZjAyDukeAouq4FRAhGYl"
-    config.consumer_secret     = "D62GHOeIdPFyzkaImTsTFosYddvtB7B15wlBzVb7vDYx2NUcwL"
+    config.consumer_key        = API_Key.key 
+    config.consumer_secret     = API_Key.secret 
     config.access_token        = "2255389962-N0FAMDVsO9guQdJcO2oVDmt8hbETbvmdCfbIrpM"
     config.access_token_secret = "9sTNH217Em3eieDwo4ucSKEwe2uB3x2oWXTEAdQc3cPjK"
   end
