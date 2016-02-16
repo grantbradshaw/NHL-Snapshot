@@ -1,16 +1,13 @@
-require_relative 'api_key'
-
 module SportsTwitter
 
   include Twitter::Extractor
 
   @client = Twitter::REST::Client.new do |config|
-    config.consumer_key        = API_Key.key 
-    config.consumer_secret     = API_Key.secret 
-    config.access_token        = "2255389962-N0FAMDVsO9guQdJcO2oVDmt8hbETbvmdCfbIrpM"
-    config.access_token_secret = "9sTNH217Em3eieDwo4ucSKEwe2uB3x2oWXTEAdQc3cPjK"
+    config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+    config.consumer_secret     = ENV['TWITTER_CONSUMER_KEY_SECRET']
+    config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
+    config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
   end
-
 
   def self.search(term, quantity)
     @client.search(term, result_type: "recent").take(quantity).collect
